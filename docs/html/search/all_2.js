@@ -1,13 +1,12 @@
 var searchData=
 [
-  ['fourdst_0',['fourdst',['../namespacefourdst.html',1,'']]],
-  ['fourdst_3a_3aplugin_1',['plugin',['../namespacefourdst_1_1plugin.html',1,'fourdst']]],
-  ['fourdst_3a_3aplugin_3a_3aexception_2',['exception',['../namespacefourdst_1_1plugin_1_1exception.html',1,'fourdst::plugin']]],
-  ['fourdst_3a_3aplugin_3a_3amanager_3',['manager',['../namespacefourdst_1_1plugin_1_1manager.html',1,'fourdst::plugin']]],
-  ['fourdst_3a_3aplugin_3a_3atemplates_4',['templates',['../namespacefourdst_1_1plugin_1_1templates.html',1,'fourdst::plugin']]],
-  ['fourdst_3a_3aplugin_3a_3autils_5',['utils',['../namespacefourdst_1_1plugin_1_1utils.html',1,'fourdst::plugin']]],
-  ['fourdst_5fdeclare_5fplugin_6',['FOURDST_DECLARE_PLUGIN',['../plugin__factory_8h.html#a0a6ec772f2a0018d20091bce15bee042',1,'plugin_factory.h']]],
-  ['fourdst_5fplugin_5fexport_7',['FOURDST_PLUGIN_EXPORT',['../plugin__factory_8h.html#a80d978d69b092433c517188392d15c8e',1,'plugin_factory.h']]],
-  ['functor_2eh_8',['functor.h',['../functor_8h.html',1,'']]],
-  ['functorplugin_5ft_9',['FunctorPlugin_T',['../classfourdst_1_1plugin_1_1templates_1_1_functor_plugin___t.html',1,'fourdst::plugin::templates']]]
+  ['cli_0',['fourdst-cli',['../index.html#autotoc_md16',1,'']]],
+  ['cli_20plugin_20init_20tt_1',['&lt;tt&gt;fourdst-cli plugin init&lt;/tt&gt;',['../md_docs_2static_2_f_o_u_r_d_s_t-_c_l_i.html#autotoc_md24',1,'']]],
+  ['cli_20plugin_20tool_20documentation_2',['fourdst-cli plugin Tool Documentation',['../md_docs_2static_2_f_o_u_r_d_s_t-_c_l_i.html',1,'']]],
+  ['code_3',['Example Generated Code',['../md_docs_2static_2_f_o_u_r_d_s_t-_c_l_i.html#autotoc_md36',1,'']]],
+  ['command_20structure_4',['Command Structure',['../md_docs_2static_2_f_o_u_r_d_s_t-_c_l_i.html#autotoc_md21',1,'']]],
+  ['commands_5',['Commands',['../md_docs_2static_2_f_o_u_r_d_s_t-_c_l_i.html#autotoc_md23',1,'']]],
+  ['compiling_20a_20plugin_6',['Compiling a plugin',['../index.html#autotoc_md10',1,'']]],
+  ['cpp_20tt_7',['&lt;tt&gt;src/plugin_name.cpp&lt;/tt&gt;',['../md_docs_2static_2_f_o_u_r_d_s_t-_c_l_i.html#autotoc_md34',1,'']]],
+  ['creation_8',['Basic Plugin Creation',['../md_docs_2static_2_f_o_u_r_d_s_t-_c_l_i.html#autotoc_md26',1,'']]]
 ];

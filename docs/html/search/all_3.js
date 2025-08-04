@@ -1,10 +1,8 @@
 var searchData=
 [
-  ['g_5fplugin_5fname_0',['g_plugin_name',['../namespacefourdst_1_1plugin.html#a9803ce723cdf0eaf3fcae9b38c79cc16',1,'fourdst::plugin']]],
-  ['g_5fplugin_5fversion_1',['g_plugin_version',['../namespacefourdst_1_1plugin.html#a335ca4547dfd9559d3dc4936e54e8c2e',1,'fourdst::plugin']]],
-  ['get_2',['get',['../classfourdst_1_1plugin_1_1manager_1_1_plugin_manager.html#af1cc7f6bb9943655067092d61bd44d26',1,'fourdst::plugin::manager::PluginManager']]],
-  ['get_5fname_3',['get_name',['../classfourdst_1_1plugin_1_1_plugin_base.html#a685d45b9d66c19c548b285fba072c673',1,'fourdst::plugin::PluginBase::get_name()'],['../classfourdst_1_1plugin_1_1_i_plugin.html#ad345d9df9764373b975a94068673b6e3',1,'fourdst::plugin::IPlugin::get_name()']]],
-  ['get_5fraw_4',['get_raw',['../classfourdst_1_1plugin_1_1manager_1_1_plugin_manager.html#a5ffedbd007a151fd870becc936173e36',1,'fourdst::plugin::manager::PluginManager']]],
-  ['get_5fversion_5',['get_version',['../classfourdst_1_1plugin_1_1_plugin_base.html#a515b9e4d80f94bc2c7f0ed2d89a6a40c',1,'fourdst::plugin::PluginBase::get_version()'],['../classfourdst_1_1plugin_1_1_i_plugin.html#aa11b51a25e1508c616a98feeafa4f1e5',1,'fourdst::plugin::IPlugin::get_version()']]],
-  ['gridfire_6',['GridFire',['../index.html',1,'']]]
+  ['dependencies_0',['System Dependencies',['../md_docs_2static_2_f_o_u_r_d_s_t-_c_l_i.html#autotoc_md29',1,'']]],
+  ['destroyer_1',['destroyer',['../structfourdst_1_1plugin_1_1_plugin_deleter.html#a07422f6c98317a72df402cb2a8838125',1,'fourdst::plugin::PluginDeleter']]],
+  ['detailed_20usage_2',['Detailed Usage',['../md_docs_2static_2_f_o_u_r_d_s_t-_c_l_i.html#autotoc_md25',1,'']]],
+  ['development_20workflow_3',['Development Workflow',['../md_docs_2static_2_f_o_u_r_d_s_t-_c_l_i.html#autotoc_md39',1,'']]],
+  ['documentation_4',['fourdst-cli plugin Tool Documentation',['../md_docs_2static_2_f_o_u_r_d_s_t-_c_l_i.html',1,'']]]
 ];

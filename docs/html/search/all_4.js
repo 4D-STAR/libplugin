@@ -1,7 +1,7 @@
 var searchData=
 [
-  ['impl_0',['Impl',['../structfourdst_1_1plugin_1_1manager_1_1_plugin_manager_1_1_impl.html',1,'fourdst::plugin::manager::PluginManager']]],
-  ['instance_1',['instance',['../structfourdst_1_1plugin_1_1manager_1_1_plugin_manager_1_1_impl_1_1_plugin_handle.html#a88e827ded24b2722c8e57eb93e85c363',1,'fourdst::plugin::manager::PluginManager::Impl::PluginHandle']]],
-  ['iplugin_2',['IPlugin',['../classfourdst_1_1plugin_1_1_i_plugin.html',1,'fourdst::plugin']]],
-  ['iplugin_2eh_3',['iplugin.h',['../iplugin_8h.html',1,'']]]
+  ['entry_20point_0',['Host Program Entry Point',['../index.html#autotoc_md7',1,'']]],
+  ['example_20generated_20code_1',['Example Generated Code',['../md_docs_2static_2_f_o_u_r_d_s_t-_c_l_i.html#autotoc_md36',1,'']]],
+  ['examples_2',['Examples',['../index.html#autotoc_md3',1,'Examples'],['../index.html#autotoc_md5',1,'Examples'],['../md_docs_2static_2_f_o_u_r_d_s_t-_c_l_i.html#autotoc_md38',1,'Integration with Examples']]],
+  ['exceptions_2eh_3',['exceptions.h',['../exceptions_8h.html',1,'']]]
 ];

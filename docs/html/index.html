@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.13.2"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>GridFire: GridFire</title>
+<title>fourdst_plugin: libplugin</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -29,9 +29,9 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">GridFire<span id="projectnumber">&#160;0.6.0</span>
+   <div id="projectname">fourdst_plugin<span id="projectnumber">&#160;0.0.1a</span>
    </div>
-   <div id="projectbrief">General Purpose Nuclear Network</div>
+   <div id="projectbrief">C++ Plugin Manager</div>
   </td>
  </tr>
  </tbody>
@@ -99,10 +99,179 @@ $(function(){initNavTree('index.html',''); initResizable(true); });
 </div>
 
 <div><div class="header">
-  <div class="headertitle"><div class="title">GridFire </div></div>
+  <div class="headertitle"><div class="title">libplugin </div></div>
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><p><a class="anchor" id="md_docs_2static_2mainpage"></a></p>
+<p>libplugin is a simple, dynamic library based, plugin framework developed for SERiF, a 4D-STAR project. libplugin has been developed with the primary goal of being easy and type safe for plugin developers to use.</p>
+<h1><a class="anchor" id="autotoc_md1"></a>
+Funding</h1>
+<p>libplugin is a part of the 4D-STAR collaboration. 4D-STAR is funded by European Research Council (ERC) under the Horizon Europe programme (Synergy Grant agreement No. 101071505: 4D-STAR) Work for this project is funded by the European Union. Views and opinions expressed are however those of the author(s) only and do not necessarily reflect those of the European Union or the European Research Council.</p>
+<h1><a class="anchor" id="autotoc_md2"></a>
+Installation</h1>
+<p>The primary installation channel for libplugin is directly from source. Note that you will need a C++ compiler supporting C++23.</p>
+<div class="fragment"><div class="line">git clone https://github.com/4D-STAR/libplugin</div>
+<div class="line">cd libplugin</div>
+<div class="line">meson setup build</div>
+<div class="line">meson compile -C build</div>
+<div class="line">meson test -C build</div>
+<div class="line">meson install -C build</div>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md3"></a>
+Examples</h1>
+<p>There are robust examples in the <code>examples/</code> directory. Users are strongly encoraged to make use of these examples as learning tools.</p>
+<h1><a class="anchor" id="autotoc_md4"></a>
+Usage</h1>
+<p>The primary usage flow for libplugin is</p>
+<ol type="1">
+<li>Define some common and pure virtual plugin interface as a decendent of <code><a class="el" href="classfourdst_1_1plugin_1_1_plugin_base.html" title="Base class providing default implementations for plugin identification.">fourdst::plugin::PluginBase</a></code>. Generally this will be defined by whatever program expects the plugins to be made for it. That is to say that if I was the maintainer of the <code>GridFire</code> project and I wanted users to be able to make plugins for <code>GridFire::solver::DirectNetworkSolver::RHSManager::observe()</code> I would need to make some header file which defined the plugin class interface.</li>
+<li>The plugin author must then make a specific implimentation of that interface. So if <code>GridFire</code> presents an interface called <code>RHSManagerObservePlugin</code> then the plugin author must make a concrete implimentation of that pure virtual interface.</li>
+<li>The plugin author compiles their plugin as a dynamic library (<code>*.dylib</code> on macOS, <code>*.so</code> on linux). They must tell the compiler to include the libplugin headers (and libplugin library) of course, but also the common interface header.</li>
+<li>The "Host" program (in the above examples this would be <code>GridFire</code>) must then be somehow informed of the location of the dynamic library. The method to do this is up to the Host program to impliment (this could be something like command line arguments or a config file)</li>
+<li>Within the Host program the <code><a class="el" href="classfourdst_1_1plugin_1_1manager_1_1_plugin_manager.html#ac3550760ab3892c0d8ef2de31d729021" title="Load a plugin from the specified library path.">fourdst::plugin::manager::PluginManager::load</a>("path.dylib")</code> must then be called for that path. Again it is on the Host program to impliment the details of how this path is recived (though presumably it should be a runtime argument with safe handling for if no path is recived.)</li>
+</ol>
+<h2><a class="anchor" id="autotoc_md5"></a>
+Examples</h2>
+<p>A very simple example follows</p>
+<h3><a class="anchor" id="autotoc_md6"></a>
+Host Program</h3>
+<p>We start with what the host program needs. Remember this includes</p>
+<ul>
+<li>Some common and pure virtual interface for what kind of plugin it will expect</li>
+<li>A way to get the path to a dynamic library from a plugin author</li>
+</ul>
+<h4><a class="anchor" id="autotoc_md7"></a>
+Host Program Entry Point</h4>
+<div class="fragment"><div class="line"><span class="comment">// File main.cpp</span></div>
+<div class="line"><span class="comment">// This is intended to be the entry point for the host</span></div>
+<div class="line"> </div>
+<div class="line"><span class="preprocessor">#include &lt;<a class="code" href="plugin_8h.html">fourdst/plugin/plugin.h</a>&gt;</span></div>
+<div class="line"><span class="preprocessor">#include &quot;host_interface.h&quot;</span></div>
+<div class="line"> </div>
+<div class="line"><span class="keywordtype">int</span> main() {</div>
+<div class="line">  <a class="code hl_class" href="classfourdst_1_1plugin_1_1manager_1_1_plugin_manager.html">fourdst::plugin::manager::PluginManager</a> manager;</div>
+<div class="line">  manager.<a class="code hl_function" href="classfourdst_1_1plugin_1_1manager_1_1_plugin_manager.html#ac3550760ab3892c0d8ef2de31d729021">load</a>(<span class="stringliteral">&quot;libsimple_plugin.dylib&quot;</span>); <span class="comment">// For now I will just assume that the plugin is at this fixed path</span></div>
+<div class="line">  <span class="keyword">auto</span>* plugin = manager.<a class="code hl_function" href="classfourdst_1_1plugin_1_1manager_1_1_plugin_manager.html#af1cc7f6bb9943655067092d61bd44d26">get</a>&lt;IHostDefinedPlugin&gt;(<span class="stringliteral">&quot;plugin_main&quot;</span>);</div>
+<div class="line">  plugin -&gt; say_hello();</div>
+<div class="line">}</div>
+<div class="ttc" id="aclassfourdst_1_1plugin_1_1manager_1_1_plugin_manager_html"><div class="ttname"><a href="classfourdst_1_1plugin_1_1manager_1_1_plugin_manager.html">fourdst::plugin::manager::PluginManager</a></div><div class="ttdoc">Central manager for plugin loading and lifecycle management.</div><div class="ttdef"><b>Definition</b> plugin_manager.h:40</div></div>
+<div class="ttc" id="aclassfourdst_1_1plugin_1_1manager_1_1_plugin_manager_html_ac3550760ab3892c0d8ef2de31d729021"><div class="ttname"><a href="classfourdst_1_1plugin_1_1manager_1_1_plugin_manager.html#ac3550760ab3892c0d8ef2de31d729021">fourdst::plugin::manager::PluginManager::load</a></div><div class="ttdeci">void load(const std::filesystem::path &amp;library_path) const</div><div class="ttdoc">Load a plugin from the specified library path.</div><div class="ttdef"><b>Definition</b> plugin_manager.cpp:40</div></div>
+<div class="ttc" id="aclassfourdst_1_1plugin_1_1manager_1_1_plugin_manager_html_af1cc7f6bb9943655067092d61bd44d26"><div class="ttname"><a href="classfourdst_1_1plugin_1_1manager_1_1_plugin_manager.html#af1cc7f6bb9943655067092d61bd44d26">fourdst::plugin::manager::PluginManager::get</a></div><div class="ttdeci">T * get(const std::string &amp;plugin_name)</div><div class="ttdoc">Get a type-safe pointer to a loaded plugin.</div><div class="ttdef"><b>Definition</b> plugin_manager.h:160</div></div>
+<div class="ttc" id="aplugin_8h_html"><div class="ttname"><a href="plugin_8h.html">plugin.h</a></div><div class="ttdoc">Main include header for the FourDST plugin system.</div></div>
+</div><!-- fragment --><h4><a class="anchor" id="autotoc_md8"></a>
+Host Program Interface</h4>
+<div class="fragment"><div class="line"><span class="comment">// File: host_interface.h</span></div>
+<div class="line"><span class="comment">// This is a file the host program must provide so that both it and the plugin author can know about the plugin interface</span></div>
+<div class="line"> </div>
+<div class="line"><span class="preprocessor">#pragma once</span></div>
+<div class="line"><span class="preprocessor">#include &lt;<a class="code" href="plugin_8h.html">fourdst/plugin/plugin.h</a>&gt;</span></div>
+<div class="line"> </div>
+<div class="line"><span class="keyword">class </span>IHostDefinedPlugin : <span class="keyword">public</span> <a class="code hl_class" href="classfourdst_1_1plugin_1_1_plugin_base.html">fourdst::plugin::PluginBase</a> {</div>
+<div class="line"><span class="keyword">public</span>:</div>
+<div class="line">  ~HostDefinedPlugin() <span class="keyword">override</span> = <span class="keywordflow">default</span>;</div>
+<div class="line">  <span class="keyword">virtual</span> <span class="keywordtype">void</span> say_hello() <span class="keyword">const</span> = 0;</div>
+<div class="line">}</div>
+<div class="ttc" id="aclassfourdst_1_1plugin_1_1_plugin_base_html"><div class="ttname"><a href="classfourdst_1_1plugin_1_1_plugin_base.html">fourdst::plugin::PluginBase</a></div><div class="ttdoc">Base class providing default implementations for plugin identification.</div><div class="ttdef"><b>Definition</b> plugin_factory.h:58</div></div>
+</div><!-- fragment --><h3><a class="anchor" id="autotoc_md9"></a>
+Plugin Program</h3>
+<p>The plugin author then only needs to write one file</p>
+<div class="fragment"><div class="line"><span class="comment">// File: plugin.cpp</span></div>
+<div class="line"><span class="comment">// This is the file a plugin author would write</span></div>
+<div class="line"><span class="preprocessor">#include &lt;<a class="code" href="plugin_8h.html">fourdst/plugin/plugin.h</a>&gt;</span></div>
+<div class="line"><span class="preprocessor">#include &quot;host_interface.h&quot;</span> <span class="comment">// Note that it is generally up to the host to sort out how to inform the plugin author where this file is...</span></div>
+<div class="line"> </div>
+<div class="line"><span class="preprocessor">#include &lt;iostream&gt;</span></div>
+<div class="line"> </div>
+<div class="line"><span class="keyword">class </span>CustomPlugin : <span class="keyword">public</span> IHostDefinedPlugin {</div>
+<div class="line">  <span class="keywordtype">void</span> say_hello()<span class="keyword"> const override </span>{</div>
+<div class="line">    std::cout &lt;&lt; <span class="stringliteral">&quot;Hello, World!\n&quot;</span>;</div>
+<div class="line">  }</div>
+<div class="line">}</div>
+<div class="line"> </div>
+<div class="line"><span class="comment">// The first argument is the name of the plugin authors implimentation</span></div>
+<div class="line"><span class="comment">// The second argument is the name of the plugin that the host will call. The names the host expects to call should be documented *by the host*</span></div>
+<div class="line"><span class="comment">// The last argument is the version number</span></div>
+<div class="line">FOURDST_REGISTER_PLUGIN(CustomPlugin, <span class="stringliteral">&quot;plugin_main&quot;</span>, <span class="stringliteral">&quot;1.0.0&quot;</span>)</div>
+</div><!-- fragment --><h3><a class="anchor" id="autotoc_md10"></a>
+Compiling a plugin</h3>
+<p>You very well could call the compiler directly; however, we strongly recommend you use a build system to compile your plugins. We use meson</p>
+<div class="fragment"><div class="line"># File: meson.build</div>
+<div class="line">project(&#39;simple_plugin, &#39;cpp&#39;, version: &#39;1.0.0&#39;, default_options: [&#39;cpp_std=c++23&#39;])</div>
+<div class="line"> </div>
+<div class="line"># Find the fourdst plugin library</div>
+<div class="line">fourdst_plugin_dep = dependency(&#39;fourdst_plugin&#39;, required: true)</div>
+<div class="line"> </div>
+<div class="line"># We need some way of informing the plugin about the header from the host program</div>
+<div class="line"># if your host program has been installed in a find-able manner this could perhapse done like this</div>
+<div class="line"># alternitivley you could use meson&#39;s shared_library&#39;s include_directories directive and point it</div>
+<div class="line"># at whatever directory that header file is in</div>
+<div class="line">host_program_dep = dependency(&#39;host_program&#39;, required: true)</div>
+<div class="line"> </div>
+<div class="line">simple_plugin = shared_library(</div>
+<div class="line">    &#39;simple_plugin&#39;,</div>
+<div class="line">    &#39;plugin.cpp&#39;,</div>
+<div class="line">    dependencies: [fourdst_plugin_dep, host_program_dep],</div>
+<div class="line">    install: false,  # Set to true if you want to install the plugin</div>
+<div class="line">    cpp_args: [&#39;-fPIC&#39;]  # Ensure position-independent code</div>
+<div class="line">)</div>
+</div><!-- fragment --><p> then you would simply run the standard set of meson commands</p>
+<div class="fragment"><div class="line">meson setup buildPlugin</div>
+<div class="line">meson compile -C buildPlugin</div>
+</div><!-- fragment --><p>now you will have a file in build named <code>libsimple_plugin.cpp</code></p>
+<h2><a class="anchor" id="autotoc_md11"></a>
+Templates</h2>
+<p>We include a simple <code>FunctorPlugin_T&lt;T&gt;</code> template plugin allowing Host authors to impliment functor style plugins. This plugin expects that operator() will be overloaded with the signature</p>
+<div class="fragment"><div class="line">T operator()(T arg);</div>
+</div><!-- fragment --><p> An example usage might be</p>
+<h3><a class="anchor" id="autotoc_md12"></a>
+Host</h3>
+<h4><a class="anchor" id="autotoc_md13"></a>
+Host interface file</h4>
+<div class="fragment"><div class="line"><span class="comment">// File: TimestepFunctorInterface.h</span></div>
+<div class="line"><span class="preprocessor">#include &lt;<a class="code" href="plugin_8h.html">fourdst/plugin/plugin.h</a>&gt;</span></div>
+<div class="line"> </div>
+<div class="line"><span class="keyword">struct </span>TimestepContext {</div>
+<div class="line">  <span class="keywordtype">double</span> time;</div>
+<div class="line">  <span class="keywordtype">double</span> dt;</div>
+<div class="line">  <span class="keywordtype">double</span> value;</div>
+<div class="line">  <span class="keywordtype">size_t</span> step;</div>
+<div class="line">}</div>
+<div class="line"> </div>
+<div class="line"><span class="keyword">class </span>ITimestepFunctor : <span class="keyword">public</span> <a class="code hl_class" href="classfourdst_1_1plugin_1_1templates_1_1_functor_plugin___t.html">fourdst::plugin::templates::FunctorPlugin_T</a>&lt;TimestepContext&gt; {};</div>
+<div class="ttc" id="aclassfourdst_1_1plugin_1_1templates_1_1_functor_plugin___t_html"><div class="ttname"><a href="classfourdst_1_1plugin_1_1templates_1_1_functor_plugin___t.html">fourdst::plugin::templates::FunctorPlugin_T</a></div><div class="ttdoc">Template base class for functor-style plugins.</div><div class="ttdef"><b>Definition</b> functor.h:45</div></div>
+</div><!-- fragment --><h4><a class="anchor" id="autotoc_md14"></a>
+Host usage of plugin</h4>
+<div class="fragment"><div class="line"><span class="preprocessor">#include &lt;<a class="code" href="plugin_8h.html">fourdst/plugin/plugin.h</a>&gt;</span></div>
+<div class="line"> </div>
+<div class="line"><span class="preprocessor">#include &quot;TimestepFunctorInterface.h&quot;</span></div>
+<div class="line"> </div>
+<div class="line"><span class="keywordtype">void</span> foo() {</div>
+<div class="line">  <a class="code hl_class" href="classfourdst_1_1plugin_1_1manager_1_1_plugin_manager.html">fourdst::plugin::manager::PluginManager</a> manager;</div>
+<div class="line">  TimestepContext context {54.3, 0.1, 10.892745, 7}</div>
+<div class="line">  manager.<a class="code hl_function" href="classfourdst_1_1plugin_1_1manager_1_1_plugin_manager.html#ac3550760ab3892c0d8ef2de31d729021">load</a>(<span class="stringliteral">&quot;path.dylib&quot;</span>);</div>
+<div class="line">  <span class="keyword">auto</span>* plugin = manager.<a class="code hl_function" href="classfourdst_1_1plugin_1_1manager_1_1_plugin_manager.html#af1cc7f6bb9943655067092d61bd44d26">get</a>&lt;ITimestepFunctor&gt;(<span class="stringliteral">&quot;plugin_A&quot;</span>)</div>
+<div class="line">  TimestepContext result = (*plugin)(context);</div>
+<div class="line">}</div>
+</div><!-- fragment --><h4><a class="anchor" id="autotoc_md15"></a>
+Plugin author usage</h4>
+<div class="fragment"><div class="line"><span class="preprocessor">#include &lt;<a class="code" href="plugin_8h.html">fourdst/plugin/plugin.h</a>&gt;</span></div>
+<div class="line"> </div>
+<div class="line"><span class="preprocessor">#include &quot;TimestepFunctorInterface.h&quot;</span></div>
+<div class="line"> </div>
+<div class="line"><span class="keyword">class </span>TimestepFunctor : <span class="keyword">public</span> ITimestepFunctor {</div>
+<div class="line">  TimestepContext operator()(TimestepContext ctx) {</div>
+<div class="line">    std::cout &lt;&lt; <span class="stringliteral">&quot;Time: &quot;</span> &lt;&lt; ctx.time &lt;&lt; <span class="stringliteral">&quot;, value: &quot;</span> &lt;&lt; ctx.value &lt;&lt; <span class="stringliteral">&quot;\n&quot;</span>;</div>
+<div class="line">    <span class="keywordflow">return</span> ctx;</div>
+<div class="line">  }</div>
+<div class="line">}</div>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md16"></a>
+fourdst-cli</h2>
+<p>The <a href="https://github.com/4D-STAR/fourdst">fourdst</a> library contains cli tool named <code>fourdst-cli</code>. One function of this tool is to make the lives of plugin authors much easier. See here for more details but the basics are covered below.</p>
+<p>Once <code>fourdst-cli</code> is installed it is invoked using a git like syntax from</p>
+<div class="fragment"><div class="line">fourdst-cli plugin init PluginName --header &lt;path/to/interface/defined/by/host&gt;</div>
+</div><!-- fragment --><p>This will let setup all the required files so that the author can just go in and impliment the functions they want to then build with meson.</p>
+<h2><a class="anchor" id="autotoc_md17"></a>
+Future</h2>
+<p>We hope to add support for python plugins being called from C++ in the near future. </p>
 </div></div><!-- PageDoc -->
 <a href="doxygen_crawl.html"></a>
 </div><!-- contents -->

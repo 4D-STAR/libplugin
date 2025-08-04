@@ -1,5 +1,9 @@
 var searchData=
 [
-  ['operator_28_29_0',['operator()',['../classfourdst_1_1plugin_1_1templates_1_1_functor_plugin___t.html#aca43e8b52c6f5cfa16a1a84b715d272d',1,'fourdst::plugin::templates::FunctorPlugin_T::operator()()'],['../structfourdst_1_1plugin_1_1_plugin_deleter.html#a608ecd24add6e3a0d62e1aca7256d85b',1,'fourdst::plugin::PluginDeleter::operator()()']]],
-  ['operator_3d_1',['operator=',['../classfourdst_1_1plugin_1_1manager_1_1_plugin_manager.html#a320d9dc48c67aeab9b5453d82861dde8',1,'fourdst::plugin::manager::PluginManager::operator=(const PluginManager &amp;)=delete'],['../classfourdst_1_1plugin_1_1manager_1_1_plugin_manager.html#aefeb30bec7811a1253439eaf5c7bc728',1,'fourdst::plugin::manager::PluginManager::operator=(PluginManager &amp;&amp;)=delete']]]
+  ['host_0',['Host',['../index.html#autotoc_md12',1,'']]],
+  ['host_20interface_20file_1',['Host interface file',['../index.html#autotoc_md13',1,'']]],
+  ['host_20program_2',['Host Program',['../index.html#autotoc_md6',1,'']]],
+  ['host_20program_20entry_20point_3',['Host Program Entry Point',['../index.html#autotoc_md7',1,'']]],
+  ['host_20program_20interface_4',['Host Program Interface',['../index.html#autotoc_md8',1,'']]],
+  ['host_20usage_20of_20plugin_5',['Host usage of plugin',['../index.html#autotoc_md14',1,'']]]
 ];

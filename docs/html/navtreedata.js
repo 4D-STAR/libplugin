@@ -24,7 +24,37 @@
 */
 var NAVTREE =
 [
-  [ "GridFire", "index.html", [
+  [ "fourdst_plugin", "index.html", [
+    [ "libplugin", "index.html", "index" ],
+    [ "fourdst-cli plugin Tool Documentation", "md_docs_2static_2_f_o_u_r_d_s_t-_c_l_i.html", [
+      [ "Installation", "md_docs_2static_2_f_o_u_r_d_s_t-_c_l_i.html#autotoc_md19", null ],
+      [ "Overview", "md_docs_2static_2_f_o_u_r_d_s_t-_c_l_i.html#autotoc_md20", null ],
+      [ "Command Structure", "md_docs_2static_2_f_o_u_r_d_s_t-_c_l_i.html#autotoc_md21", [
+        [ "Global Options", "md_docs_2static_2_f_o_u_r_d_s_t-_c_l_i.html#autotoc_md22", null ],
+        [ "Commands", "md_docs_2static_2_f_o_u_r_d_s_t-_c_l_i.html#autotoc_md23", [
+          [ "fourdst-cli plugin init", "md_docs_2static_2_f_o_u_r_d_s_t-_c_l_i.html#autotoc_md24", null ]
+        ] ]
+      ] ],
+      [ "Detailed Usage", "md_docs_2static_2_f_o_u_r_d_s_t-_c_l_i.html#autotoc_md25", [
+        [ "Basic Plugin Creation", "md_docs_2static_2_f_o_u_r_d_s_t-_c_l_i.html#autotoc_md26", null ],
+        [ "Interactive Interface Selection", "md_docs_2static_2_f_o_u_r_d_s_t-_c_l_i.html#autotoc_md27", null ]
+      ] ],
+      [ "Requirements", "md_docs_2static_2_f_o_u_r_d_s_t-_c_l_i.html#autotoc_md28", [
+        [ "System Dependencies", "md_docs_2static_2_f_o_u_r_d_s_t-_c_l_i.html#autotoc_md29", null ],
+        [ "libplugin Plugin Library", "md_docs_2static_2_f_o_u_r_d_s_t-_c_l_i.html#autotoc_md30", null ]
+      ] ],
+      [ "Generated Project Structure", "md_docs_2static_2_f_o_u_r_d_s_t-_c_l_i.html#autotoc_md31", [
+        [ "Generated Files", "md_docs_2static_2_f_o_u_r_d_s_t-_c_l_i.html#autotoc_md32", [
+          [ "meson.build", "md_docs_2static_2_f_o_u_r_d_s_t-_c_l_i.html#autotoc_md33", null ],
+          [ "src/plugin_name.cpp", "md_docs_2static_2_f_o_u_r_d_s_t-_c_l_i.html#autotoc_md34", null ],
+          [ ".gitignore", "md_docs_2static_2_f_o_u_r_d_s_t-_c_l_i.html#autotoc_md35", null ]
+        ] ],
+        [ "Example Generated Code", "md_docs_2static_2_f_o_u_r_d_s_t-_c_l_i.html#autotoc_md36", null ]
+      ] ],
+      [ "Building Generated Projects", "md_docs_2static_2_f_o_u_r_d_s_t-_c_l_i.html#autotoc_md37", null ],
+      [ "Integration with Examples", "md_docs_2static_2_f_o_u_r_d_s_t-_c_l_i.html#autotoc_md38", null ],
+      [ "Development Workflow", "md_docs_2static_2_f_o_u_r_d_s_t-_c_l_i.html#autotoc_md39", null ]
+    ] ],
     [ "Namespaces", "namespaces.html", [
       [ "Namespace List", "namespaces.html", "namespaces_dup" ],
       [ "Namespace Members", "namespacemembers.html", [
