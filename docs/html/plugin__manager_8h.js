@@ -1,0 +1,4 @@
+var plugin__manager_8h =
+[
+    [ "fourdst::plugin::manager::PluginManager", "classfourdst_1_1plugin_1_1manager_1_1_plugin_manager.html", "classfourdst_1_1plugin_1_1manager_1_1_plugin_manager" ]
+];
