@@ -5,17 +5,21 @@ lib_src = files(
     'lib/utils/plugin_utils.cpp'
 )
 
+dl_dep = dependency('dl', required: true)
+
 libplugin = shared_library(
     'plugin',
     lib_src,
     install : true,
     include_directories : include,
+    dependencies : [dl_dep],
     cpp_args : ['-fPIC']
 )
 
 plugin_dep = declare_dependency(
     link_with : libplugin,
-    include_directories : include
+    include_directories : include,
+    dependencies : [dl_dep],
 )
 
 include_files_base = files(
