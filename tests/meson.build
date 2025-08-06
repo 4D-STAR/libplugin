@@ -5,6 +5,8 @@ gtest_nomain_dep = dependency('gtest', main: false, required : true)
 mock_plugin_link_args = []
 if host_machine.system() == 'darwin'
     mock_plugin_link_args += '-Wl,-undefined,dynamic_lookup'
+elif host_machine.system() == 'linux'
+    mock_plugin_link_args += '-Wl,--unresolved-symbols=ignore-all'
 endif
 
 
