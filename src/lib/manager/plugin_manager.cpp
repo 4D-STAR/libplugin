@@ -45,7 +45,7 @@ namespace fourdst::plugin {
             throw exception::PluginLoadError("Plugin library not found at path: " + library_path.string());
         }
 
-        void* handle = dlopen(library_path.c_str(), RTLD_LAZY);
+        void* handle = dlopen(library_path.c_str(), RTLD_LAZY | RTLD_GLOBAL);
         if (!handle) {
             throw exception::PluginLoadError("Failed to load library '" + library_path.string() + "'. Error: " + dlerror());
         }
