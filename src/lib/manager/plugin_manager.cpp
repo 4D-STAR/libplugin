@@ -1,6 +1,9 @@
 #include "fourdst/plugin/manager/plugin_manager.h"
 #include "fourdst/plugin/factory/plugin_factory.h"
 
+const char* fourdst::plugin::g_plugin_name = nullptr;
+const char* fourdst::plugin::g_plugin_version = nullptr;
+
 #include <dlfcn.h>
 #include <map>
 #include <memory>
