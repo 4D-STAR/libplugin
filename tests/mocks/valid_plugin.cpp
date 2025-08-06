@@ -8,6 +8,7 @@ extern std::atomic<bool> g_destructor_called;
 
 class ValidPlugin final : public IValidPlugin {
 public:
+    using IValidPlugin::IValidPlugin;
     ~ValidPlugin() override {
         g_destructor_called = true;
     }

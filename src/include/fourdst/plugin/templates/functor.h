@@ -44,6 +44,7 @@ namespace fourdst::plugin::templates {
     template<typename T>
     class FunctorPlugin_T : public PluginBase {
     public:
+        using PluginBase::PluginBase;
         /**
          * @brief Function call operator for processing input data
          * 

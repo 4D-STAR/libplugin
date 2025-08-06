@@ -29,22 +29,6 @@
 namespace fourdst::plugin {
 
     /**
-     * @brief Global plugin name variable
-     * 
-     * This variable must be defined by each plugin to specify its name.
-     * It is automatically declared by the FOURDST_DECLARE_PLUGIN macro.
-     */
-    extern const char* g_plugin_name;
-
-    /**
-     * @brief Global plugin version variable
-     * 
-     * This variable must be defined by each plugin to specify its version.
-     * It is automatically declared by the FOURDST_DECLARE_PLUGIN macro.
-     */
-    extern const char* g_plugin_version;
-
-    /**
      * @brief Base class providing default implementations for plugin identification
      * 
      * This class provides a convenient base for plugin implementations that
@@ -55,8 +39,10 @@ namespace fourdst::plugin {
      * @note Plugins using this base class must use the FOURDST_DECLARE_PLUGIN macro
      *       to properly define the required global variables.
      */
-    class PluginBase : public IPlugin {
+    class IPluginBase : public IPlugin {
     public:
+        explicit IPluginBase(const char* plugin_name, const char* plugin_version) :
+            m_plugin_name(plugin_name), m_plugin_version(plugin_version) {}
         /**
          * @brief Get the plugin name from the global variable
          * 
@@ -64,7 +50,7 @@ namespace fourdst::plugin {
          * @throw Never throws
          */
         [[nodiscard]] const char* get_name() const override {
-            return g_plugin_name;
+            return m_plugin_name;
         }
 
         /**
@@ -74,8 +60,16 @@ namespace fourdst::plugin {
          * @throw Never throws
          */
         [[nodiscard]] const char* get_version() const override {
-            return g_plugin_version;
+            return m_plugin_version;
         }
+    private:
+        const char* m_plugin_name;
+        const char* m_plugin_version;
+    };
+
+    class PluginBase : public IPluginBase {
+    public:
+        using IPluginBase::IPluginBase; // Inherit constructor for plugin name and version
     };
 
     /**
@@ -94,7 +88,7 @@ namespace fourdst::plugin {
      * This type defines the signature for the plugin cleanup function that
      * must be exported by each plugin library as "destroy_plugin".
      * 
-     * @param plugin Pointer to the plugin instance to destroy
+     * @param IPlugin* Pointer to the plugin instance to destroy
      */
     typedef void (*plugin_destroyer_t)(IPlugin*);
 
@@ -126,12 +120,14 @@ namespace fourdst::plugin {
  * FOURDST_DECLARE_PLUGIN(MyPlugin, "my_plugin", "1.0.0");
  * @endcode
  */
-#define FOURDST_DECLARE_PLUGIN(className, pluginName, pluginVersion) \
-    const char* fourdst::plugin::g_plugin_name = pluginName; \
-    const char* fourdst::plugin::g_plugin_version = pluginVersion; \
-    FOURDST_PLUGIN_EXPORT fourdst::plugin::IPlugin* create_plugin() { \
-        return new className(); \
-    } \
-    FOURDST_PLUGIN_EXPORT void destroy_plugin(fourdst::plugin::IPlugin* plugin) { \
-        delete plugin; \
+#define FOURDST_DECLARE_PLUGIN(className, pluginName, pluginVersion)                \
+    FOURDST_PLUGIN_EXPORT fourdst::plugin::IPlugin* create_plugin() {               \
+        static_assert(std::is_base_of_v<fourdst::plugin::PluginBase,                \
+            className>,                                                             \
+        #className " must inherit from fourdst::plugin::PluginBase");               \
+        return new className(pluginName, pluginVersion);                            \
+    }                                                                               \
+    FOURDST_PLUGIN_EXPORT void destroy_plugin(fourdst::plugin::IPlugin* plugin) {   \
+        delete plugin;                                                              \
     }
+

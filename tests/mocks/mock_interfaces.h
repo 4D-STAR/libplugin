@@ -10,6 +10,8 @@
 // It inherits VIRTUALLY from IPlugin to solve the diamond inheritance problem.
 class IValidPlugin : public fourdst::plugin::PluginBase {
 public:
+    using PluginBase::PluginBase;
+
     ~IValidPlugin() override = default;
     [[nodiscard]] virtual int get_magic_number() const = 0;
 };
@@ -18,6 +20,7 @@ public:
 // It also inherits VIRTUALLY.
 class IOtherInterface : public fourdst::plugin::PluginBase {
 public:
+    using PluginBase::PluginBase;
     ~IOtherInterface() override = default;
 };
 
@@ -27,4 +30,6 @@ struct ExampleContext {
 };
 
 // A mock functor interface for testing plugin functionality.
-class IExampleFunctor : public fourdst::plugin::templates::FunctorPlugin_T<ExampleContext> {};
+class IExampleFunctor : public fourdst::plugin::templates::FunctorPlugin_T<ExampleContext> {
+    using FunctorPlugin_T::FunctorPlugin_T;
+};
