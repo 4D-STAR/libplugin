@@ -14,13 +14,14 @@
 /**
  * @brief Plugin implementing trigonometric and hyperbolic functions
  */
-class LogMath : public IAdvancedMath {
+class LogMath final : public IAdvancedMath {
 private:
     const std::vector<std::string> m_functions = {
         "log10", "ln", "log2", "exp"
     };
 
 public:
+    using IAdvancedMath::IAdvancedMath;
     std::vector<std::string> get_supported_functions() const override {
         return m_functions;
     }

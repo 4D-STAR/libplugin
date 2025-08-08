@@ -18,11 +18,12 @@
  * greeting styles. It demonstrates proper error handling and state management
  * in a plugin implementation.
  */
-class SimpleGreeter : public IGreeter {
+class SimpleGreeter final : public IGreeter {
 private:
     std::string m_style = "casual"; ///< Current greeting style
 
 public:
+    using IGreeter::IGreeter;
     /**
      * @brief Generate a personalized greeting
      * 
@@ -33,7 +34,7 @@ public:
      */
     std::string greet(const std::string& name) const override {
         // Validate input
-        if (name.empty() || std::all_of(name.begin(), name.end(), ::isspace)) {
+        if (name.empty() || std::ranges::all_of(name, ::isspace)) {
             throw std::invalid_argument("Name cannot be empty or contain only whitespace");
         }
 

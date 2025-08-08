@@ -14,13 +14,14 @@
 /**
  * @brief Plugin implementing basic arithmetic operations
  */
-class BasicMath : public IMathOperation {
+class BasicMath final : public IMathOperation {
 private:
     const std::vector<std::string> m_operations = {
         "add", "subtract", "multiply", "divide", "power", "modulo"
     };
 
 public:
+    using IMathOperation::IMathOperation;
     std::vector<std::string> get_supported_operations() const override {
         return m_operations;
     }

@@ -76,6 +76,8 @@ subprojects/libconstants/
 subprojects/liblogging/
 subprojects/eigen-*/
 subprojects/fourdst/
+subprojects/*/
+!subprojects/packagefiles/
 
 *.csv
 *.dot

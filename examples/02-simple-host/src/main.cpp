@@ -172,7 +172,7 @@ int main(int argc, char* argv[]) {
     std::cout << "================================\n\n";
 
     // Create plugin manager
-    fourdst::plugin::manager::PluginManager manager;
+    fourdst::plugin::manager::PluginManager& manager = fourdst::plugin::manager::PluginManager::getInstance();
     
     int successful_loads = 0;
     int total_plugins = argc - 1;
@@ -204,6 +204,6 @@ int main(int argc, char* argv[]) {
         return 1;
     }
 
-    std::cout << "\nThank you for using the FourDST plugin system!\n";
+    std::cout << "\nThank you for using the fourdst::libplugin plugin system!\n";
     return 0;
 }

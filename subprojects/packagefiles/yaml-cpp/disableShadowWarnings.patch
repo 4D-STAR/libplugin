@@ -1,0 +1,10 @@
+--- yaml-cpp/CMakeLists.txt.orig	2025-07-24 08:18:01
++++ yaml-cpp/CMakeLists.txt	2025-07-24 08:18:25
+@@ -93,7 +93,6 @@
+ 
+ target_compile_options(yaml-cpp
+   PRIVATE
+-    $<${not-msvc}:-Wall -Wextra -Wshadow -Weffc++ -Wno-long-long>
+     $<${not-msvc}:-pedantic -pedantic-errors>
+ 
+     $<$<AND:${backport-msvc-runtime},${msvc-rt-mtd-static}>:-MTd>
