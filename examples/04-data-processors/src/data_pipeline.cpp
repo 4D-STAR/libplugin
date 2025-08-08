@@ -100,7 +100,7 @@ void print_series_stats(const DataSeries& series, const std::string& prefix = ""
  */
 class DataPipeline {
 private:
-    fourdst::plugin::manager::PluginManager m_manager;
+    fourdst::plugin::manager::PluginManager& m_manager = fourdst::plugin::manager::PluginManager::getInstance();
     std::vector<IDataSeriesProcessor*> m_processors;
     
 public:

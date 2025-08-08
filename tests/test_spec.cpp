@@ -12,7 +12,7 @@ std::atomic<bool> g_destructor_called = false;
 // Test Fixture for PluginManager tests
 class PluginManagerTest : public ::testing::Test {
 protected:
-    fourdst::plugin::manager::PluginManager manager;
+    fourdst::plugin::manager::PluginManager& manager = fourdst::plugin::manager::PluginManager::getInstance();
     std::filesystem::path valid_plugin_path;
     std::filesystem::path no_factory_plugin_path;
     std::filesystem::path other_plugin_path;
@@ -105,15 +105,6 @@ TEST_F(PluginManagerTest, R4_1_R4_2_UnloadCallsDestructorAndReleasesLibrary) {
     EXPECT_NO_THROW(manager.unload("ValidPlugin"));
     EXPECT_TRUE(g_destructor_called);
     EXPECT_THROW(manager.get<fourdst::plugin::IPlugin>("ValidPlugin"), fourdst::plugin::exception::PluginNotLoadedError);
-}
-
-TEST_F(PluginManagerTest, R4_3_ManagerDestructorUnloadsAllPlugins) {
-    g_destructor_called = false;
-    {
-        fourdst::plugin::manager::PluginManager local_manager;
-        local_manager.load(valid_plugin_path);
-    }
-    EXPECT_TRUE(g_destructor_called);
 }
 
 // --- R5: Plugin Authoring Experience ---

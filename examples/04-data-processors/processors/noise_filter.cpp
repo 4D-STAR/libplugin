@@ -22,6 +22,7 @@ private:
     double m_threshold = 2.0; ///< Z-score threshold for outlier detection
     
 public:
+    using IDataSeriesProcessor::IDataSeriesProcessor;
     /**
      * @brief Apply noise filtering to a data series
      * 

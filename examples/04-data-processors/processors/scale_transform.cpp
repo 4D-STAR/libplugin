@@ -21,6 +21,7 @@ private:
     double m_scale_factor = 1.0; ///< The scaling factor to apply
     
 public:
+    using IDataSeriesProcessor::IDataSeriesProcessor;
     /**
      * @brief Apply scaling transformation to a data series
      * 

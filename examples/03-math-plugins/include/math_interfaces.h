@@ -22,6 +22,7 @@
  */
 class IMathOperation : public fourdst::plugin::PluginBase {
 public:
+    using PluginBase::PluginBase;
     /**
      * @brief Virtual destructor for proper cleanup
      */
@@ -68,6 +69,7 @@ public:
  */
 class IAdvancedMath : public fourdst::plugin::PluginBase {
 public:
+    using PluginBase::PluginBase;
     /**
      * @brief Virtual destructor for proper cleanup
      */

@@ -28,16 +28,18 @@ several tasks involved in plugin development, including:
 ## Command Structure
 
 ```
-fourdst-cli plugin COMMAND [COMMAND_OPTIONS]
+fourdst-cli [GLOBAL_OPTIONS] COMMAND [COMMAND_OPTIONS]
 ```
 
 ### Global Options
 
 - `--help` - Show help information
+- `--verbose, -v` - Enable verbose output
+- `--version` - Show version information
 
-### Commands
+## Plugin Commands
 
-#### `fourdst-cli plugin init`
+### `fourdst-cli plugin init`
 
 Initialize a new plugin project from a C++ interface header.
 
@@ -189,6 +191,146 @@ meson compile -C builddir
 ```
 
 The compiled plugin will be available as a shared library (`.so`, `.dylib`, or `.dll` depending on platform) in the `builddir` directory.
+
+## Bundle Commands
+
+### `fourdst-cli bundle create`
+
+Create a new plugin bundle from existing plugin directories.
+
+```bash
+fourdst-cli bundle create -o OUTPUT_FILE [OPTIONS] PLUGIN_DIRS...
+```
+
+**Arguments:**
+- `PLUGIN_DIRS...` - One or more plugin directories to include in the bundle
+
+**Options:**
+- `-o, --output` - Output bundle file (should end with .fbundle)
+- `--name, -n` - Set the bundle name (required)
+- `--ver, -v` - Set the bundle version (default: "0.1.0")
+- `--author, -a` - Set the bundle author (required)
+- `--target-macos-version` - Minimum macOS version required (default: current version)
+- `--description, -d` - Set the bundle description
+
+**Example:**
+```bash
+fourdst-cli bundle create -o example.fbundle --name TestPluginBundle --ver 0.1.0 \
+    --author "Your Name" --target-macos-version 12.0 test_1_plugin test_2_plugin
+```
+
+### `fourdst-cli bundle fill`
+
+Fill a bundle with precompiled dynamic libraries for various platforms.
+
+```bash
+fourdst-cli bundle fill BUNDLE_FILE [OPTIONS]
+```
+
+**Arguments:**
+- `BUNDLE_FILE` - Path to the bundle file (.fbundle)
+
+**Options:**
+- `--platform, -p` - Target platform (default: current platform)
+- `--all-platforms` - Build for all supported platforms (requires Docker)
+- `--docker, -d` - Use Docker for cross-platform builds
+
+**Example:**
+```bash
+# Build for current platform
+fourdst-cli bundle fill example.fbundle
+
+# Build for all platforms using Docker
+fourdst-cli bundle fill example.fbundle --all-platforms
+```
+
+### `fourdst-cli bundle sign`
+
+Sign a bundle with a private key.
+
+```bash
+fourdst-cli bundle sign BUNDLE_FILE --key KEY_NAME [OPTIONS]
+```
+
+**Arguments:**
+- `BUNDLE_FILE` - Path to the bundle file (.fbundle)
+- `--key, -k` - Name of the key to use for signing (must be in keyring)
+
+**Options:**
+- `--keyring, -r` - Path to keyring (default: ~/.fourdst/keys)
+
+**Example:**
+```bash
+fourdst-cli bundle sign example.fbundle --key example
+```
+
+### `fourdst-cli bundle verify`
+
+Verify a bundle's signature.
+
+```bash
+fourdst-cli bundle verify BUNDLE_FILE
+```
+
+**Arguments:**
+- `BUNDLE_FILE` - Path to the bundle file (.fbundle)
+
+**Example:**
+```bash
+fourdst-cli bundle verify example.fbundle
+```
+
+### `fourdst-cli bundle inspect`
+
+Display detailed information about a bundle.
+
+```bash
+fourdst-cli bundle inspect BUNDLE_FILE
+```
+
+**Arguments:**
+- `BUNDLE_FILE` - Path to the bundle file (.fbundle)
+
+**Example:**
+```bash
+fourdst-cli bundle inspect example.fbundle
+```
+
+## Key Management Commands
+
+### `fourdst-cli keys generate`
+
+Generate a new key pair.
+
+```bash
+fourdst-cli keys generate --name NAME [OPTIONS]
+```
+
+**Options:**
+- `--name, -n` - Name for the key pair (required)
+- `--bits, -b` - Key size in bits (default: 4096)
+- `--out, -o` - Output directory (default: current directory)
+
+**Example:**
+```bash
+fourdst-cli keys generate --name example --bits 4096
+```
+
+### `fourdst-cli keys add`
+
+Add a public key to the keyring.
+
+```bash
+fourdst-cli keys add PUBLIC_KEY_FILE
+```
+
+**Arguments:**
+- `PUBLIC_KEY_FILE` - Path to the public key file (.pem)
+
+**Example:**
+```bash
+fourdst-cli keys add example.pub.pem
+```
 
 ## Integration with Examples
 

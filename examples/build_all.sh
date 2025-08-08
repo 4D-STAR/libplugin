@@ -152,6 +152,7 @@ EXAMPLES=(
     "02-simple-host"  
     "03-math-plugins"
     "04-data-processors"
+    "05-plugin-bundle"
 )
 
 # Build specific example or all examples

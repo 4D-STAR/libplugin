@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['impl_0',['Impl',['../structfourdst_1_1plugin_1_1manager_1_1_plugin_manager_1_1_impl.html',1,'fourdst::plugin::manager::PluginManager']]],
-  ['iplugin_1',['IPlugin',['../classfourdst_1_1plugin_1_1_i_plugin.html',1,'fourdst::plugin']]]
+  ['evp_5fmd_5fctx_5fdeleter_0',['EVP_MD_CTX_Deleter',['../structfourdst_1_1crypt_1_1_e_v_p___m_d___c_t_x___deleter.html',1,'fourdst::crypt']]],
+  ['evp_5fpkey_5fdeleter_1',['EVP_PKEY_Deleter',['../structfourdst_1_1crypt_1_1_e_v_p___p_k_e_y___deleter.html',1,'fourdst::crypt']]]
 ];

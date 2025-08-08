@@ -2,7 +2,9 @@
 
 libplugin is a simple, dynamic library based, plugin framework developed for
 SERiF, a 4D-STAR project. libplugin has been developed with the primary goal of
-being easy and type safe for plugin developers to use.
+being easy and type safe for plugin developers to use. It includes support for
+plugin bundles, which allow packaging multiple plugins together with metadata
+and resources into a single distributable file.
 
 # Funding
 
@@ -57,6 +59,72 @@ called for that path. Again it is on the Host program to impliment the details
 of how this path is recived (though presumably it should be a runtime argument
 with safe handling for if no path is recived.)
 
+## Plugin Bundles
+
+libplugin supports plugin bundles, which are single-file packages containing one or more plugins along with their metadata, resources, and signatures. Bundles are distributed as `.fourdst` files and provide several benefits:
+
+- **Single-file distribution** - Easy to share and deploy
+- **Code signing** - Verify the authenticity of plugins
+- **Dependency management** - Specify required system libraries and versions
+- **Metadata** - Include author, version, and description information
+- **Resource packaging** - Bundle additional files needed by the plugins
+
+### Creating a Bundle
+
+Use the `fourdst-cli bundle create` command to create a new bundle:
+
+First create a plugin (or multiple plugins)
+```bash
+fourdst-cli plugin init test_1_plugin -H host_provided_interface.h
+fourdst-cli plugin init test_2_plugin -H host_provided_interface.h
+```
+Now edit those to do what you want them to do.
+
+Next create a bundle from multiple plugins
+
+```bash
+fourdst-cli bundle create -o example.fbundle --name TestPluginBundle --ver 0.1.0 --author "Emily M. Boudreaux" --target-macos-version 12.0  test_1_plugin test_2_plugin
+```
+
+Now fill the bundle with precompiled dynamic libraries for various systems (mac binaries can only be produced on macos, linux binaries can be produced on any system using docker)
+In order to use docker the docker daemon must be running.
+
+```bash
+fourdst-cli bundle fill example.fbundle
+```
+
+Then create a key (or use an existing one to sign)
+
+```bash
+# Creating a key if you dont already have one
+fourdst-cli keys generate --name example
+fourdst-cli keys add example.pub.pem # This adds your personal key to the fourdst keyring
+fourdst-cli bundle sign example.fbundle --key example.pub.pem
+```
+
+
+Finally, you can inspect and or verify the bundle
+
+```bash
+fourdst-cli bundle inspect example.fbundle
+fourdst-cli bundle verify example.fbundle
+```
+
+### Loading a Bundle
+
+In your application, load a bundle using the `PluginManager`:
+
+```cpp
+#include <fourdst/plugin/manager/plugin_manager.h>
+#include <fourdst/plugin/bundle/plugin_bundle.h>
+
+fourdst::plugin::manager::PluginManager& manager = fourdst::plugin::manager::PluginManager::getInstance();
+fourdst::plugin::bundle::PluginBundle bundle("path/to/bundle.fbundle");
+
+// Access plugins from the bundle
+auto* plugin = manager.get<MyPluginInterface>("plugin_name");
+```
+
 ## Examples
 A very simple example follows
 
@@ -75,7 +143,7 @@ We start with what the host program needs. Remember this includes
 #include "host_interface.h"
 
 int main() {
-  fourdst::plugin::manager::PluginManager manager;
+  fourdst::plugin::manager::PluginManager& manager = fourdst::plugin::manager::PluginManager::getInstance();
   manager.load("libsimple_plugin.dylib"); // For now I will just assume that the plugin is at this fixed path
   auto* plugin = manager.get<IHostDefinedPlugin>("plugin_main");
   plugin -> say_hello();

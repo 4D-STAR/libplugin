@@ -22,7 +22,7 @@
  */
 class MathCalculator {
 private:
-    fourdst::plugin::manager::PluginManager m_manager;
+    fourdst::plugin::manager::PluginManager& m_manager = fourdst::plugin::manager::PluginManager::getInstance();
     std::vector<IMathOperation*> m_operation_plugins;
     std::vector<IAdvancedMath*> m_function_plugins;
 
@@ -76,7 +76,7 @@ public:
     /**
      * @brief Show available operations and functions
      */
-    void show_available_commands() {
+    void show_available_commands() const {
         std::cout << "\nAvailable Commands:\n";
         std::cout << "==================\n";
         
@@ -115,7 +115,7 @@ public:
     /**
      * @brief Process a single command
      */
-    bool process_command(const std::string& input) {
+    bool process_command(const std::string& input) const {
         std::istringstream iss(input);
         std::string command;
         iss >> command;
@@ -194,7 +194,7 @@ public:
     /**
      * @brief Run the interactive calculator
      */
-    void run() {
+    void run() const {
         std::cout << "Math Calculator\n";
         std::cout << "===============\n";
         std::cout << "Type 'help' for available commands, 'quit' to exit.\n\n";

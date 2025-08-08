@@ -1,5 +1,19 @@
 var searchData=
 [
-  ['operator_28_29_0',['operator()',['../classfourdst_1_1plugin_1_1templates_1_1_functor_plugin___t.html#aca43e8b52c6f5cfa16a1a84b715d272d',1,'fourdst::plugin::templates::FunctorPlugin_T::operator()()'],['../structfourdst_1_1plugin_1_1_plugin_deleter.html#a608ecd24add6e3a0d62e1aca7256d85b',1,'fourdst::plugin::PluginDeleter::operator()()']]],
-  ['operator_3d_1',['operator=',['../classfourdst_1_1plugin_1_1manager_1_1_plugin_manager.html#a320d9dc48c67aeab9b5453d82861dde8',1,'fourdst::plugin::manager::PluginManager::operator=(const PluginManager &amp;)=delete'],['../classfourdst_1_1plugin_1_1manager_1_1_plugin_manager.html#aefeb30bec7811a1253439eaf5c7bc728',1,'fourdst::plugin::manager::PluginManager::operator=(PluginManager &amp;&amp;)=delete']]]
+  ['get_0',['get',['../classfourdst_1_1crypt_1_1_public_key.html#a3f6eaa8bf81ff56d7dbba190fc3f1d43',1,'fourdst::crypt::PublicKey::get()'],['../classfourdst_1_1plugin_1_1manager_1_1_plugin_manager.html#af1cc7f6bb9943655067092d61bd44d26',1,'fourdst::plugin::manager::PluginManager::get()']]],
+  ['get_5ffingerprint_1',['get_fingerprint',['../classfourdst_1_1crypt_1_1_public_key.html#a792c3e5b2da6d40c3a3edfe70ae9355b',1,'fourdst::crypt::PublicKey']]],
+  ['get_5fname_2',['get_name',['../classfourdst_1_1plugin_1_1_i_plugin_base.html#aafd4fb3469c3438c03dfcb5022e7e64d',1,'fourdst::plugin::IPluginBase::get_name()'],['../classfourdst_1_1plugin_1_1_i_plugin.html#ad345d9df9764373b975a94068673b6e3',1,'fourdst::plugin::IPlugin::get_name()']]],
+  ['get_5fopenssl_5ferror_3',['get_openssl_error',['../namespacefourdst_1_1crypt_1_1utils.html#a5ee095a747421263344ecbae8f92d36c',1,'fourdst::crypt::utils']]],
+  ['get_5fpath_4',['get_path',['../classfourdst_1_1plugin_1_1bundle_1_1utils_1_1_temporary_directory.html#aef0447426671685f1aae18f04cc4cb95',1,'fourdst::plugin::bundle::utils::TemporaryDirectory']]],
+  ['get_5fraw_5',['get_raw',['../classfourdst_1_1plugin_1_1manager_1_1_plugin_manager.html#a5ffedbd007a151fd870becc936173e36',1,'fourdst::plugin::manager::PluginManager']]],
+  ['get_5fversion_6',['get_version',['../classfourdst_1_1plugin_1_1_i_plugin_base.html#a605326f317a4f7af8a4c0cb7620704a5',1,'fourdst::plugin::IPluginBase::get_version()'],['../classfourdst_1_1plugin_1_1_i_plugin.html#aa11b51a25e1508c616a98feeafa4f1e5',1,'fourdst::plugin::IPlugin::get_version()']]],
+  ['getbundleauthor_7',['getBundleAuthor',['../classfourdst_1_1plugin_1_1bundle_1_1_plugin_bundle.html#ab5d319c9713ef04ccbb67853dac451c7',1,'fourdst::plugin::bundle::PluginBundle']]],
+  ['getbundlecomment_8',['getBundleComment',['../classfourdst_1_1plugin_1_1bundle_1_1_plugin_bundle.html#a0644c35f30be2f3632a36811cdcbdad7',1,'fourdst::plugin::bundle::PluginBundle']]],
+  ['getbundleddatetime_9',['getBundledDatetime',['../classfourdst_1_1plugin_1_1bundle_1_1_plugin_bundle.html#a9c2112ba535b7460fe9b60b66c23947d',1,'fourdst::plugin::bundle::PluginBundle']]],
+  ['getbundleversion_10',['getBundleVersion',['../classfourdst_1_1plugin_1_1bundle_1_1_plugin_bundle.html#a7150512e3d1da2fc7a53ffc2d6293dea',1,'fourdst::plugin::bundle::PluginBundle']]],
+  ['gethostabisignature_11',['getHostABISignature',['../classfourdst_1_1plugin_1_1bundle_1_1_plugin_bundle.html#a82623f155165ea737c0dca725c1f10ba',1,'fourdst::plugin::bundle::PluginBundle']]],
+  ['gethostarchitecture_12',['getHostArchitecture',['../classfourdst_1_1plugin_1_1bundle_1_1_plugin_bundle.html#a9f0452e1080ba24a498a3c9af672f83a',1,'fourdst::plugin::bundle::PluginBundle']]],
+  ['gethostoperatingsystem_13',['getHostOperatingSystem',['../classfourdst_1_1plugin_1_1bundle_1_1_plugin_bundle.html#a6c11fb89eba76058c24f2e0fb6b43bb2',1,'fourdst::plugin::bundle::PluginBundle']]],
+  ['getinstance_14',['getInstance',['../classfourdst_1_1plugin_1_1manager_1_1_plugin_manager.html#a9f4a1a75f95d158e80c190b9bff28742',1,'fourdst::plugin::manager::PluginManager']]],
+  ['getpluginnames_15',['getPluginNames',['../classfourdst_1_1plugin_1_1bundle_1_1_plugin_bundle.html#a0e762cc6a4879547632103a7a575cdee',1,'fourdst::plugin::bundle::PluginBundle']]]
 ];

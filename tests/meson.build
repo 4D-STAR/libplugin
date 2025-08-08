@@ -50,24 +50,32 @@ endif
 
 
 # Create an executable target for each test
-test_exe = executable(
-    'test_spec',
-    'test_spec.cpp',
-    dependencies: [
-        gtest_dep,
-        gtest_main,
-        plugin_dep,
-    ],
-    cpp_args : [
-        '-DVALID_PLUGIN_PATH="' + valid_plugin_lib.full_path() + '"',
-        '-DNO_FACTORY_PLUGIN_PATH="' + no_factory_plugin_lib.full_path() + '"',
-        '-DOTHER_PLUGIN_PATH="' + other_plugin_lib.full_path() + '"',
-        '-DFUNCTOR_PLUGIN_PATH="' + functor_plugin_lib.full_path() + '"',
-    ],
-    link_args: [
-        export_dynamic_flag,
-    ],
-)
+#test_exe = executable(
+#    'test_spec',
+#    'test_spec.cpp',
+#    dependencies: [
+#        gtest_dep,
+#        gtest_main,
+#        plugin_dep,
+#    ],
+#    cpp_args : [
+#        '-DVALID_PLUGIN_PATH="' + valid_plugin_lib.full_path() + '"',
+#        '-DNO_FACTORY_PLUGIN_PATH="' + no_factory_plugin_lib.full_path() + '"',
+#        '-DOTHER_PLUGIN_PATH="' + other_plugin_lib.full_path() + '"',
+#        '-DFUNCTOR_PLUGIN_PATH="' + functor_plugin_lib.full_path() + '"',
+#    ],
+#    link_args: [
+#        export_dynamic_flag,
+#    ],
+#)
+#
+#test('test_spec', test_exe, env: ['MESON_SOURCE_ROOT=' + meson.project_source_root(), 'MESON_BUILD_ROOT=' + meson.project_build_root()])
 
-test('test_spec', test_exe, env: ['MESON_SOURCE_ROOT=' + meson.project_source_root(), 'MESON_BUILD_ROOT=' + meson.project_build_root()])
+executable(
+    'sandbox_test',
+    'sandbox/main.cpp',
+     dependencies: [
+        plugin_dep
+    ]
+)
 

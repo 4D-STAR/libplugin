@@ -2,7 +2,9 @@
 
 libplugin is a simple, dynamic library based, plugin framework developed for
 SERiF, a 4D-STAR project. libplugin has been developed with the primary goal of
-being easy and type safe for plugin developers to use.
+being easy and type safe for plugin developers to use. It includes support for
+plugin bundles, which allow packaging multiple plugins together with metadata
+and resources into a single distributable file.
 
 # Funding
 
@@ -56,6 +58,100 @@ command line arguments or a config file)
 called for that path. Again it is on the Host program to impliment the details
 of how this path is recived (though presumably it should be a runtime argument
 with safe handling for if no path is recived.)
+
+## Plugin Bundles
+
+libplugin provides a powerful bundle system that allows packaging multiple plugins and their resources into a single, signed archive. Bundles help with distribution, versioning, and dependency management of plugins.
+
+### Bundle Structure
+
+A plugin bundle (`.fourdst` file) is a ZIP archive containing:
+- `manifest.yaml` - Bundle metadata and plugin information
+- `plugins/` - Directory containing plugin libraries
+- `resources/` - Additional files required by the plugins
+- `signature.sig` - Cryptographic signature of the bundle
+
+### Working with Bundles
+
+#### Creating a New Plugin Bundle
+
+First create a plugin (or multiple plugins):
+
+```bash
+# Initialize plugins
+fourdst-cli plugin init test_1_plugin -H host_provided_interface.h
+fourdst-cli plugin init test_2_plugin -H host_provided_interface.h
+```
+
+Now edit those to implement the desired functionality.
+
+Next, create a bundle from multiple plugins:
+
+```bash
+# Create a new bundle with metadata
+fourdst-cli bundle create -o example.fbundle --name TestPluginBundle --ver 0.1.0 \
+    --author "Your Name" --target-macos-version 12.0 test_1_plugin test_2_plugin
+```
+
+Fill the bundle with precompiled dynamic libraries for various systems (macOS binaries require macOS, Linux binaries can be cross-compiled using Docker):
+
+```bash
+# Ensure Docker daemon is running for cross-platform builds
+fourdst-cli bundle fill example.fbundle
+```
+
+#### Signing and Verifying Bundles
+
+Create a key (or use an existing one) to sign the bundle:
+
+```bash
+# Create a new key pair if needed
+fourdst-cli keys generate --name example
+
+# Add the public key to the fourdst keyring
+fourdst-cli keys add example.pub.pem
+
+# Sign the bundle with your private key
+fourdst-cli bundle sign example.fbundle --key example.pub.pem
+```
+
+Inspect and verify the bundle:
+
+```bash
+# View bundle contents and metadata
+fourdst-cli bundle inspect example.fbundle
+
+# Verify the bundle's signature
+fourdst-cli bundle verify example.fbundle
+```
+
+#### Loading a Bundle in Code
+
+```cpp
+#include <fourdst/plugin/manager/plugin_manager.h>
+#include <fourdst/plugin/bundle/plugin_bundle.h>
+
+int main() {
+    // Get the plugin manager instance
+    fourdst::plugin::manager::PluginManager& manager = 
+        fourdst::plugin::manager::PluginManager::getInstance();
+    
+    try {
+        // Load the bundle
+        fourdst::plugin::bundle::PluginBundle bundle("path/to/example.fbundle");
+        
+        // Access plugins from the bundle
+        if (auto* plugin = manager.get<MyPluginInterface>("plugin_name")) {
+            plugin->do_something();
+        }
+    } catch (const std::exception& e) {
+        std::cerr << "Failed to load bundle: " << e.what() << std::endl;
+        return 1;
+    }
+    
+    return 0;
+}
+```
 
 ## Examples
 A very simple example follows

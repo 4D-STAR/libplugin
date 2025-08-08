@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['iplugin_2eh_0',['iplugin.h',['../iplugin_8h.html',1,'']]]
+  ['exceptions_2eh_0',['exceptions.h',['../exceptions_8h.html',1,'']]]
 ];
