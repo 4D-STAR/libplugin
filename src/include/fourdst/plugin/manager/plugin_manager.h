@@ -39,25 +39,8 @@ namespace fourdst::plugin::manager {
      */
     class PluginManager {
     public:
-        /**
-         * @brief Construct a new PluginManager
-         * 
-         * Creates a new plugin manager instance with no plugins loaded.
-         * The manager is ready to load plugins immediately after construction.
-         * 
-         * @throw std::bad_alloc If memory allocation for internal structures fails
-         */
-        PluginManager();
 
-        /**
-         * @brief Destructor that cleans up all loaded plugins
-         * 
-         * Automatically unloads all plugins in the reverse order they were loaded,
-         * ensuring proper cleanup of resources and closing of shared library handles.
-         * 
-         * @throw Never throws (cleanup operations are guaranteed to be noexcept)
-         */
-        ~PluginManager();
+        static PluginManager& getInstance();
 
         /**
          * @brief Copy constructor (deleted)
@@ -173,6 +156,9 @@ namespace fourdst::plugin::manager {
         }
 
     private:
+        PluginManager();
+
+        ~PluginManager();
         /**
          * @brief Internal method to get raw plugin pointer without type checking
          * 

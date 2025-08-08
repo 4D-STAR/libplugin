@@ -5,6 +5,7 @@
 // A different interface to test R3.3
 class OtherPlugin final : public IOtherInterface {
 public:
+    using IOtherInterface::IOtherInterface;
     [[nodiscard]] const char* get_name() const override { return "OtherPlugin"; }
     [[nodiscard]] const char* get_version() const override { return "1.0.0"; }
 };

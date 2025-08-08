@@ -23,6 +23,7 @@
  */
 class IGreeter : public fourdst::plugin::PluginBase {
 public:
+    using PluginBase::PluginBase;
     /**
      * @brief Virtual destructor for proper cleanup
      * 

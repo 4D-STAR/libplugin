@@ -1,0 +1,9 @@
+--- yaml-cpp/src/emitterutils.cpp.bak	2025-07-29 08:42:40
++++ yaml-cpp/src/emitterutils.cpp	2025-07-29 08:42:50
+@@ -1,5 +1,6 @@
+ #include <algorithm>
+ #include <iomanip>
++#include <cstdint>
+ #include <sstream>
+ 
+ #include "emitterutils.h"

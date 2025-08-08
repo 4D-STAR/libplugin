@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['g_5fplugin_5fname_0',['g_plugin_name',['../namespacefourdst_1_1plugin.html#a9803ce723cdf0eaf3fcae9b38c79cc16',1,'fourdst::plugin']]],
-  ['g_5fplugin_5fversion_1',['g_plugin_version',['../namespacefourdst_1_1plugin.html#a335ca4547dfd9559d3dc4936e54e8c2e',1,'fourdst::plugin']]]
+  ['destroyer_0',['destroyer',['../structfourdst_1_1plugin_1_1_plugin_deleter.html#a07422f6c98317a72df402cb2a8838125',1,'fourdst::plugin::PluginDeleter']]],
+  ['directorypath_1',['directoryPath',['../classfourdst_1_1plugin_1_1bundle_1_1utils_1_1_temporary_directory.html#a39fa72938d5baf3d2b396e4101707e98',1,'fourdst::plugin::bundle::utils::TemporaryDirectory']]]
 ];

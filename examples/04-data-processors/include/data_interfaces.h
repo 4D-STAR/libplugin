@@ -207,6 +207,7 @@ public:
     /**
      * @brief Virtual destructor
      */
+    using FunctorPlugin_T<DataPoint>::FunctorPlugin_T;
     virtual ~IDataPointProcessor() = default;
 };
 
@@ -219,6 +220,7 @@ public:
  */
 class IDataSeriesProcessor : public fourdst::plugin::templates::FunctorPlugin_T<DataSeries> {
 public:
+    using FunctorPlugin_T<DataSeries>::FunctorPlugin_T;
     /**
      * @brief Virtual destructor
      */

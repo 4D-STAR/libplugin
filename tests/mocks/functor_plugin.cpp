@@ -2,6 +2,7 @@
 #include "mock_interfaces.h"
 
 class FunctorPlugin final : public IExampleFunctor {
+    using IExampleFunctor::IExampleFunctor;
     ExampleContext operator()(const ExampleContext& input) const override {
         return {input.value * 2, input.threshold + 1.0};
     }

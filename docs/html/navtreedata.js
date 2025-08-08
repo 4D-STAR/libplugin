@@ -27,40 +27,52 @@ var NAVTREE =
   [ "fourdst_plugin", "index.html", [
     [ "libplugin", "index.html", "index" ],
     [ "fourdst-cli plugin Tool Documentation", "md_docs_2static_2_f_o_u_r_d_s_t-_c_l_i.html", [
-      [ "Installation", "md_docs_2static_2_f_o_u_r_d_s_t-_c_l_i.html#autotoc_md19", null ],
-      [ "Overview", "md_docs_2static_2_f_o_u_r_d_s_t-_c_l_i.html#autotoc_md20", null ],
-      [ "Command Structure", "md_docs_2static_2_f_o_u_r_d_s_t-_c_l_i.html#autotoc_md21", [
-        [ "Global Options", "md_docs_2static_2_f_o_u_r_d_s_t-_c_l_i.html#autotoc_md22", null ],
-        [ "Commands", "md_docs_2static_2_f_o_u_r_d_s_t-_c_l_i.html#autotoc_md23", [
-          [ "fourdst-cli plugin init", "md_docs_2static_2_f_o_u_r_d_s_t-_c_l_i.html#autotoc_md24", null ]
-        ] ]
+      [ "Installation", "md_docs_2static_2_f_o_u_r_d_s_t-_c_l_i.html#autotoc_md25", null ],
+      [ "Overview", "md_docs_2static_2_f_o_u_r_d_s_t-_c_l_i.html#autotoc_md26", null ],
+      [ "Command Structure", "md_docs_2static_2_f_o_u_r_d_s_t-_c_l_i.html#autotoc_md27", [
+        [ "Global Options", "md_docs_2static_2_f_o_u_r_d_s_t-_c_l_i.html#autotoc_md28", null ]
       ] ],
-      [ "Detailed Usage", "md_docs_2static_2_f_o_u_r_d_s_t-_c_l_i.html#autotoc_md25", [
-        [ "Basic Plugin Creation", "md_docs_2static_2_f_o_u_r_d_s_t-_c_l_i.html#autotoc_md26", null ],
-        [ "Interactive Interface Selection", "md_docs_2static_2_f_o_u_r_d_s_t-_c_l_i.html#autotoc_md27", null ]
+      [ "Plugin Commands", "md_docs_2static_2_f_o_u_r_d_s_t-_c_l_i.html#autotoc_md29", [
+        [ "fourdst-cli plugin init", "md_docs_2static_2_f_o_u_r_d_s_t-_c_l_i.html#autotoc_md30", null ]
       ] ],
-      [ "Requirements", "md_docs_2static_2_f_o_u_r_d_s_t-_c_l_i.html#autotoc_md28", [
-        [ "System Dependencies", "md_docs_2static_2_f_o_u_r_d_s_t-_c_l_i.html#autotoc_md29", null ],
-        [ "libplugin Plugin Library", "md_docs_2static_2_f_o_u_r_d_s_t-_c_l_i.html#autotoc_md30", null ]
+      [ "Detailed Usage", "md_docs_2static_2_f_o_u_r_d_s_t-_c_l_i.html#autotoc_md31", [
+        [ "Basic Plugin Creation", "md_docs_2static_2_f_o_u_r_d_s_t-_c_l_i.html#autotoc_md32", null ],
+        [ "Interactive Interface Selection", "md_docs_2static_2_f_o_u_r_d_s_t-_c_l_i.html#autotoc_md33", null ]
       ] ],
-      [ "Generated Project Structure", "md_docs_2static_2_f_o_u_r_d_s_t-_c_l_i.html#autotoc_md31", [
-        [ "Generated Files", "md_docs_2static_2_f_o_u_r_d_s_t-_c_l_i.html#autotoc_md32", [
-          [ "meson.build", "md_docs_2static_2_f_o_u_r_d_s_t-_c_l_i.html#autotoc_md33", null ],
-          [ "src/plugin_name.cpp", "md_docs_2static_2_f_o_u_r_d_s_t-_c_l_i.html#autotoc_md34", null ],
-          [ ".gitignore", "md_docs_2static_2_f_o_u_r_d_s_t-_c_l_i.html#autotoc_md35", null ]
+      [ "Requirements", "md_docs_2static_2_f_o_u_r_d_s_t-_c_l_i.html#autotoc_md34", [
+        [ "System Dependencies", "md_docs_2static_2_f_o_u_r_d_s_t-_c_l_i.html#autotoc_md35", null ],
+        [ "libplugin Plugin Library", "md_docs_2static_2_f_o_u_r_d_s_t-_c_l_i.html#autotoc_md36", null ]
+      ] ],
+      [ "Generated Project Structure", "md_docs_2static_2_f_o_u_r_d_s_t-_c_l_i.html#autotoc_md37", [
+        [ "Generated Files", "md_docs_2static_2_f_o_u_r_d_s_t-_c_l_i.html#autotoc_md38", [
+          [ "meson.build", "md_docs_2static_2_f_o_u_r_d_s_t-_c_l_i.html#autotoc_md39", null ],
+          [ "src/plugin_name.cpp", "md_docs_2static_2_f_o_u_r_d_s_t-_c_l_i.html#autotoc_md40", null ],
+          [ ".gitignore", "md_docs_2static_2_f_o_u_r_d_s_t-_c_l_i.html#autotoc_md41", null ]
         ] ],
-        [ "Example Generated Code", "md_docs_2static_2_f_o_u_r_d_s_t-_c_l_i.html#autotoc_md36", null ]
+        [ "Example Generated Code", "md_docs_2static_2_f_o_u_r_d_s_t-_c_l_i.html#autotoc_md42", null ]
       ] ],
-      [ "Building Generated Projects", "md_docs_2static_2_f_o_u_r_d_s_t-_c_l_i.html#autotoc_md37", null ],
-      [ "Integration with Examples", "md_docs_2static_2_f_o_u_r_d_s_t-_c_l_i.html#autotoc_md38", null ],
-      [ "Development Workflow", "md_docs_2static_2_f_o_u_r_d_s_t-_c_l_i.html#autotoc_md39", null ]
+      [ "Building Generated Projects", "md_docs_2static_2_f_o_u_r_d_s_t-_c_l_i.html#autotoc_md43", null ],
+      [ "Bundle Commands", "md_docs_2static_2_f_o_u_r_d_s_t-_c_l_i.html#autotoc_md44", [
+        [ "fourdst-cli bundle create", "md_docs_2static_2_f_o_u_r_d_s_t-_c_l_i.html#autotoc_md45", null ],
+        [ "fourdst-cli bundle fill", "md_docs_2static_2_f_o_u_r_d_s_t-_c_l_i.html#autotoc_md46", null ],
+        [ "fourdst-cli bundle sign", "md_docs_2static_2_f_o_u_r_d_s_t-_c_l_i.html#autotoc_md47", null ],
+        [ "fourdst-cli bundle verify", "md_docs_2static_2_f_o_u_r_d_s_t-_c_l_i.html#autotoc_md48", null ],
+        [ "fourdst-cli bundle inspect", "md_docs_2static_2_f_o_u_r_d_s_t-_c_l_i.html#autotoc_md49", null ]
+      ] ],
+      [ "Key Management Commands", "md_docs_2static_2_f_o_u_r_d_s_t-_c_l_i.html#autotoc_md50", [
+        [ "fourdst-cli keys generate", "md_docs_2static_2_f_o_u_r_d_s_t-_c_l_i.html#autotoc_md51", null ],
+        [ "fourdst-cli keys add", "md_docs_2static_2_f_o_u_r_d_s_t-_c_l_i.html#autotoc_md52", null ]
+      ] ],
+      [ "Integration with Examples", "md_docs_2static_2_f_o_u_r_d_s_t-_c_l_i.html#autotoc_md53", null ],
+      [ "Development Workflow", "md_docs_2static_2_f_o_u_r_d_s_t-_c_l_i.html#autotoc_md54", null ]
     ] ],
     [ "Namespaces", "namespaces.html", [
       [ "Namespace List", "namespaces.html", "namespaces_dup" ],
       [ "Namespace Members", "namespacemembers.html", [
         [ "All", "namespacemembers.html", null ],
-        [ "Variables", "namespacemembers_vars.html", null ],
-        [ "Typedefs", "namespacemembers_type.html", null ]
+        [ "Functions", "namespacemembers_func.html", null ],
+        [ "Typedefs", "namespacemembers_type.html", null ],
+        [ "Enumerations", "namespacemembers_enum.html", null ]
       ] ]
     ] ],
     [ "Classes", "annotated.html", [
@@ -70,7 +82,8 @@ var NAVTREE =
       [ "Class Members", "functions.html", [
         [ "All", "functions.html", null ],
         [ "Functions", "functions_func.html", null ],
-        [ "Variables", "functions_vars.html", null ]
+        [ "Variables", "functions_vars.html", null ],
+        [ "Related Symbols", "functions_rela.html", null ]
       ] ]
     ] ],
     [ "Files", "files.html", [
@@ -85,7 +98,8 @@ var NAVTREE =
 
 var NAVTREEINDEX =
 [
-"annotated.html"
+"annotated.html",
+"classfourdst_1_1plugin_1_1templates_1_1_functor_plugin___t.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronization';

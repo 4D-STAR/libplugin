@@ -37,12 +37,17 @@ namespace fourdst::plugin {
         }
     }
 
+    manager::PluginManager & manager::PluginManager::getInstance() {
+        static PluginManager instance;
+        return instance;
+    }
+
     void manager::PluginManager::load(const std::filesystem::path& library_path) const {
         if (!std::filesystem::exists(library_path)) {
             throw exception::PluginLoadError("Plugin library not found at path: " + library_path.string());
         }
 
-        void* handle = dlopen(library_path.c_str(), RTLD_LAZY);
+        void* handle = dlopen(library_path.c_str(), RTLD_LAZY | RTLD_GLOBAL);
         if (!handle) {
             throw exception::PluginLoadError("Failed to load library '" + library_path.string() + "'. Error: " + dlerror());
         }

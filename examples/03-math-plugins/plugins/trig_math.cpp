@@ -14,7 +14,7 @@
 /**
  * @brief Plugin implementing trigonometric and hyperbolic functions
  */
-class TrigMath : public IAdvancedMath {
+class TrigMath final : public IAdvancedMath {
 private:
     const std::vector<std::string> m_functions = {
         "sin", "cos", "tan", "asin", "acos", "atan", 
@@ -22,6 +22,7 @@ private:
     };
 
 public:
+    using IAdvancedMath::IAdvancedMath;
     std::vector<std::string> get_supported_functions() const override {
         return m_functions;
     }

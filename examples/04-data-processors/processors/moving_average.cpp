@@ -16,11 +16,12 @@
  * which helps reduce noise while preserving trends. The window size
  * is configurable.
  */
-class MovingAverage : public IDataSeriesProcessor {
+class MovingAverage final : public IDataSeriesProcessor {
 private:
     size_t m_window_size = 5; ///< Size of the moving average window
     
 public:
+    using IDataSeriesProcessor::IDataSeriesProcessor;
     /**
      * @brief Apply moving average smoothing to a data series
      * 
