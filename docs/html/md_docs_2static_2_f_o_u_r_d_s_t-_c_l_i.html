@@ -102,15 +102,15 @@ $(function(){initNavTree('md_docs_2static_2_f_o_u_r_d_s_t-_c_l_i.html',''); init
   <div class="headertitle"><div class="title">fourdst-cli plugin Tool Documentation</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p><a class="anchor" id="autotoc_md18"></a></p>
+<div class="textblock"><p><a class="anchor" id="autotoc_md24"></a></p>
 <p>The <code>fourdst</code> package includes a command-line interface (CLI) tool designed to help with a number of tasks related to the 4D-STAR project. One of these is plugin development through the <code>plugin</code> command.</p>
-<h1><a class="anchor" id="autotoc_md19"></a>
+<h1><a class="anchor" id="autotoc_md25"></a>
 Installation</h1>
 <div class="fragment"><div class="line">pip install fourdst</div>
 </div><!-- fragment --><p> or from source </p><div class="fragment"><div class="line">git clone https://github.com/4D-STAR/fourdst.git</div>
 <div class="line">cd fourdst</div>
 <div class="line">pip install .</div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md20"></a>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md26"></a>
 Overview</h1>
 <p>The <code>fourdst-cli plugin</code> command provides a streamlined way to create new plugins for the fourdst_libplugin. It automates several tasks involved in plugin development, including:</p>
 <ol type="1">
@@ -120,18 +120,20 @@ Overview</h1>
 <li><b>Creating method stubs</b> for all pure virtual methods in the interface</li>
 <li><b>Setting up build system</b> with Meson configuration</li>
 </ol>
-<h1><a class="anchor" id="autotoc_md21"></a>
+<h1><a class="anchor" id="autotoc_md27"></a>
 Command Structure</h1>
-<div class="fragment"><div class="line">fourdst-cli plugin COMMAND [COMMAND_OPTIONS]</div>
-</div><!-- fragment --><h2><a class="anchor" id="autotoc_md22"></a>
+<div class="fragment"><div class="line">fourdst-cli [GLOBAL_OPTIONS] COMMAND [COMMAND_OPTIONS]</div>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md28"></a>
 Global Options</h2>
 <ul>
 <li><code>--help</code> - Show help information</li>
+<li><code>--verbose, -v</code> - Enable verbose output</li>
+<li><code>--version</code> - Show version information</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md23"></a>
-Commands</h2>
-<h3><a class="anchor" id="autotoc_md24"></a>
-<code>fourdst-cli plugin init</code></h3>
+<h1><a class="anchor" id="autotoc_md29"></a>
+Plugin Commands</h1>
+<h2><a class="anchor" id="autotoc_md30"></a>
+<code>fourdst-cli plugin init</code></h2>
 <p>Initialize a new plugin project from a C++ interface header.</p>
 <div class="fragment"><div class="line">fourdst-cli plugin init PROJECT_NAME --header HEADER_FILE [OPTIONS]</div>
 </div><!-- fragment --><p><b>Arguments:</b></p><ul>
@@ -142,16 +144,16 @@ Commands</h2>
 <li><code>--directory, -d</code> - Directory to create the project in (default: current directory)</li>
 <li><code>--version, --ver</code> - Initial SemVer version of the plugin (default: "0.1.0")</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md25"></a>
+<h1><a class="anchor" id="autotoc_md31"></a>
 Detailed Usage</h1>
-<h2><a class="anchor" id="autotoc_md26"></a>
+<h2><a class="anchor" id="autotoc_md32"></a>
 Basic Plugin Creation</h2>
 <div class="fragment"><div class="line"># Create a simple plugin project</div>
 <div class="line">fourdst-cli plugin init my_greeter --header /path/to/greeter_interface.h</div>
 <div class="line"> </div>
 <div class="line"># Create in specific directory with custom version</div>
 <div class="line">fourdst-cli plugin init my_plugin --header ./interfaces/my_interface.h --directory ./plugins --version &quot;0.2.1&quot;</div>
-</div><!-- fragment --><h2><a class="anchor" id="autotoc_md27"></a>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md33"></a>
 Interactive Interface Selection</h2>
 <p>When the header file contains multiple interfaces (classes with pure virtual methods), the CLI will present an interactive selection menu:</p>
 <div class="fragment"><div class="line">$ fourdst-cli plugin init math_plugin --header math_interfaces.h</div>
@@ -161,9 +163,9 @@ Interactive Interface Selection</h2>
 <div class="line">  IAdvancedMath</div>
 <div class="line">  IDataProcessor</div>
 </div><!-- fragment --><p>Use arrow keys to select the desired interface and press Enter.</p>
-<h1><a class="anchor" id="autotoc_md28"></a>
+<h1><a class="anchor" id="autotoc_md34"></a>
 Requirements</h1>
-<h2><a class="anchor" id="autotoc_md29"></a>
+<h2><a class="anchor" id="autotoc_md35"></a>
 System Dependencies</h2>
 <ul>
 <li><b>libclang</b> - Required for parsing C++ header files <div class="fragment"><div class="line">pip install libclang</div>
@@ -175,7 +177,7 @@ System Dependencies</h2>
 <div class="line">brew install pkg-config</div>
 </div><!-- fragment --></li>
 </ul>
-<h2><a class="anchor" id="autotoc_md30"></a>
+<h2><a class="anchor" id="autotoc_md36"></a>
 libplugin Plugin Library</h2>
 <p>The generated projects require the libplugin plugin library to be installed and discoverable via pkg-config:</p>
 <div class="fragment"><div class="line"># Check if fourdst_plugin is available</div>
@@ -187,7 +189,7 @@ libplugin Plugin Library</h2>
 <div class="line"># Show linker flags  </div>
 <div class="line">pkg-config --libs fourdst_plugin</div>
 </div><!-- fragment --><p>If this is not installed then run meson install from the root of the libplugin repository</p>
-<h1><a class="anchor" id="autotoc_md31"></a>
+<h1><a class="anchor" id="autotoc_md37"></a>
 Generated Project Structure</h1>
 <p>The CLI creates a complete plugin project with the following structure:</p>
 <div class="fragment"><div class="line">my_plugin/</div>
@@ -195,9 +197,9 @@ Generated Project Structure</h1>
 <div class="line">├── .gitignore           # Git ignore file</div>
 <div class="line">└── src/</div>
 <div class="line">    └── my_plugin.cpp    # Plugin implementation with method stubs</div>
-</div><!-- fragment --><h2><a class="anchor" id="autotoc_md32"></a>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md38"></a>
 Generated Files</h2>
-<h3><a class="anchor" id="autotoc_md33"></a>
+<h3><a class="anchor" id="autotoc_md39"></a>
 <code>meson.build</code></h3>
 <ul>
 <li>Complete Meson build configuration</li>
@@ -205,7 +207,7 @@ Generated Files</h2>
 <li>Sets up shared library target with proper flags</li>
 <li>Includes the interface header directory</li>
 </ul>
-<h3><a class="anchor" id="autotoc_md34"></a>
+<h3><a class="anchor" id="autotoc_md40"></a>
 <code>src/plugin_name.cpp</code></h3>
 <ul>
 <li>Complete plugin implementation skeleton</li>
@@ -214,12 +216,12 @@ Generated Files</h2>
 <li>Uses <code>FOURDST_DECLARE_PLUGIN</code> macro for plugin registration</li>
 <li>Contains TODO comments for implementation guidance</li>
 </ul>
-<h3><a class="anchor" id="autotoc_md35"></a>
+<h3><a class="anchor" id="autotoc_md41"></a>
 <code>.gitignore</code></h3>
 <ul>
 <li>Ignores build directories (<code>builddir/</code>)</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md36"></a>
+<h2><a class="anchor" id="autotoc_md42"></a>
 Example Generated Code</h2>
 <p>For an interface like:</p>
 <div class="fragment"><div class="line"><span class="keyword">class </span>IGreeter : <span class="keyword">public</span> <a class="code hl_class" href="classfourdst_1_1plugin_1_1_plugin_base.html">fourdst::plugin::PluginBase</a> {</div>
@@ -228,7 +230,7 @@ Example Generated Code</h2>
 <div class="line">    <span class="keyword">virtual</span> std::string greet(<span class="keyword">const</span> std::string&amp; name) <span class="keyword">const</span> = 0;</div>
 <div class="line">    <span class="keyword">virtual</span> <span class="keywordtype">void</span> set_style(<span class="keyword">const</span> std::string&amp; style) = 0;</div>
 <div class="line">};</div>
-<div class="ttc" id="aclassfourdst_1_1plugin_1_1_plugin_base_html"><div class="ttname"><a href="classfourdst_1_1plugin_1_1_plugin_base.html">fourdst::plugin::PluginBase</a></div><div class="ttdoc">Base class providing default implementations for plugin identification.</div><div class="ttdef"><b>Definition</b> plugin_factory.h:58</div></div>
+<div class="ttc" id="aclassfourdst_1_1plugin_1_1_plugin_base_html"><div class="ttname"><a href="classfourdst_1_1plugin_1_1_plugin_base.html">fourdst::plugin::PluginBase</a></div><div class="ttdef"><b>Definition</b> plugin_factory.h:70</div></div>
 </div><!-- fragment --><p>The CLI generates:</p>
 <div class="fragment"><div class="line"><span class="preprocessor">#include &quot;/path/to/greeter_interface.h&quot;</span></div>
 <div class="line"> </div>
@@ -245,15 +247,99 @@ Example Generated Code</h2>
 <div class="line">};</div>
 <div class="line"> </div>
 <div class="line"><a class="code hl_define" href="plugin__factory_8h.html#a0a6ec772f2a0018d20091bce15bee042">FOURDST_DECLARE_PLUGIN</a>(MyGreeterPlugin, <span class="stringliteral">&quot;my_greeter&quot;</span>, <span class="stringliteral">&quot;1.0.0&quot;</span>);</div>
-<div class="ttc" id="aplugin__factory_8h_html_a0a6ec772f2a0018d20091bce15bee042"><div class="ttname"><a href="plugin__factory_8h.html#a0a6ec772f2a0018d20091bce15bee042">FOURDST_DECLARE_PLUGIN</a></div><div class="ttdeci">#define FOURDST_DECLARE_PLUGIN(className, pluginName, pluginVersion)</div><div class="ttdoc">Macro to declare a plugin with automatic factory function generation.</div><div class="ttdef"><b>Definition</b> plugin_factory.h:129</div></div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md37"></a>
+<div class="ttc" id="aplugin__factory_8h_html_a0a6ec772f2a0018d20091bce15bee042"><div class="ttname"><a href="plugin__factory_8h.html#a0a6ec772f2a0018d20091bce15bee042">FOURDST_DECLARE_PLUGIN</a></div><div class="ttdeci">#define FOURDST_DECLARE_PLUGIN(className, pluginName, pluginVersion)</div><div class="ttdoc">Macro to declare a plugin with automatic factory function generation.</div><div class="ttdef"><b>Definition</b> plugin_factory.h:123</div></div>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md43"></a>
 Building Generated Projects</h1>
 <p>After generating a project:</p>
 <div class="fragment"><div class="line">cd my_plugin</div>
 <div class="line">meson setup builddir</div>
 <div class="line">meson compile -C builddir</div>
 </div><!-- fragment --><p>The compiled plugin will be available as a shared library (<code>.so</code>, <code>.dylib</code>, or <code>.dll</code> depending on platform) in the <code>builddir</code> directory.</p>
-<h1><a class="anchor" id="autotoc_md38"></a>
+<h1><a class="anchor" id="autotoc_md44"></a>
+Bundle Commands</h1>
+<h2><a class="anchor" id="autotoc_md45"></a>
+<code>fourdst-cli bundle create</code></h2>
+<p>Create a new plugin bundle from existing plugin directories.</p>
+<div class="fragment"><div class="line">fourdst-cli bundle create -o OUTPUT_FILE [OPTIONS] PLUGIN_DIRS...</div>
+</div><!-- fragment --><p><b>Arguments:</b></p><ul>
+<li><code>PLUGIN_DIRS...</code> - One or more plugin directories to include in the bundle</li>
+</ul>
+<p><b>Options:</b></p><ul>
+<li><code>-o, --output</code> - Output bundle file (should end with .fbundle)</li>
+<li><code>--name, -n</code> - Set the bundle name (required)</li>
+<li><code>--ver, -v</code> - Set the bundle version (default: "0.1.0")</li>
+<li><code>--author, -a</code> - Set the bundle author (required)</li>
+<li><code>--target-macos-version</code> - Minimum macOS version required (default: current version)</li>
+<li><code>--description, -d</code> - Set the bundle description</li>
+</ul>
+<p><b>Example:</b> </p><div class="fragment"><div class="line">fourdst-cli bundle create -o example.fbundle --name TestPluginBundle --ver 0.1.0 \</div>
+<div class="line">    --author &quot;Your Name&quot; --target-macos-version 12.0 test_1_plugin test_2_plugin</div>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md46"></a>
+<code>fourdst-cli bundle fill</code></h2>
+<p>Fill a bundle with precompiled dynamic libraries for various platforms.</p>
+<div class="fragment"><div class="line">fourdst-cli bundle fill BUNDLE_FILE [OPTIONS]</div>
+</div><!-- fragment --><p><b>Arguments:</b></p><ul>
+<li><code>BUNDLE_FILE</code> - Path to the bundle file (.fbundle)</li>
+</ul>
+<p><b>Options:</b></p><ul>
+<li><code>--platform, -p</code> - Target platform (default: current platform)</li>
+<li><code>--all-platforms</code> - Build for all supported platforms (requires Docker)</li>
+<li><code>--docker, -d</code> - Use Docker for cross-platform builds</li>
+</ul>
+<p><b>Example:</b> </p><div class="fragment"><div class="line"># Build for current platform</div>
+<div class="line">fourdst-cli bundle fill example.fbundle</div>
+<div class="line"> </div>
+<div class="line"># Build for all platforms using Docker</div>
+<div class="line">fourdst-cli bundle fill example.fbundle --all-platforms</div>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md47"></a>
+<code>fourdst-cli bundle sign</code></h2>
+<p>Sign a bundle with a private key.</p>
+<div class="fragment"><div class="line">fourdst-cli bundle sign BUNDLE_FILE --key KEY_NAME [OPTIONS]</div>
+</div><!-- fragment --><p><b>Arguments:</b></p><ul>
+<li><code>BUNDLE_FILE</code> - Path to the bundle file (.fbundle)</li>
+<li><code>--key, -k</code> - Name of the key to use for signing (must be in keyring)</li>
+</ul>
+<p><b>Options:</b></p><ul>
+<li><code>--keyring, -r</code> - Path to keyring (default: ~/.fourdst/keys)</li>
+</ul>
+<p><b>Example:</b> </p><div class="fragment"><div class="line">fourdst-cli bundle sign example.fbundle --key example</div>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md48"></a>
+<code>fourdst-cli bundle verify</code></h2>
+<p>Verify a bundle's signature.</p>
+<div class="fragment"><div class="line">fourdst-cli bundle verify BUNDLE_FILE</div>
+</div><!-- fragment --><p><b>Arguments:</b></p><ul>
+<li><code>BUNDLE_FILE</code> - Path to the bundle file (.fbundle)</li>
+</ul>
+<p><b>Example:</b> </p><div class="fragment"><div class="line">fourdst-cli bundle verify example.fbundle</div>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md49"></a>
+<code>fourdst-cli bundle inspect</code></h2>
+<p>Display detailed information about a bundle.</p>
+<div class="fragment"><div class="line">fourdst-cli bundle inspect BUNDLE_FILE</div>
+</div><!-- fragment --><p><b>Arguments:</b></p><ul>
+<li><code>BUNDLE_FILE</code> - Path to the bundle file (.fbundle)</li>
+</ul>
+<p><b>Example:</b> </p><div class="fragment"><div class="line">fourdst-cli bundle inspect example.fbundle</div>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md50"></a>
+Key Management Commands</h1>
+<h2><a class="anchor" id="autotoc_md51"></a>
+<code>fourdst-cli keys generate</code></h2>
+<p>Generate a new key pair.</p>
+<div class="fragment"><div class="line">fourdst-cli keys generate --name NAME [OPTIONS]</div>
+</div><!-- fragment --><p><b>Options:</b></p><ul>
+<li><code>--name, -n</code> - Name for the key pair (required)</li>
+<li><code>--bits, -b</code> - Key size in bits (default: 4096)</li>
+<li><code>--out, -o</code> - Output directory (default: current directory)</li>
+</ul>
+<p><b>Example:</b> </p><div class="fragment"><div class="line">fourdst-cli keys generate --name example --bits 4096</div>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md52"></a>
+<code>fourdst-cli keys add</code></h2>
+<p>Add a public key to the keyring.</p>
+<div class="fragment"><div class="line">fourdst-cli keys add PUBLIC_KEY_FILE</div>
+</div><!-- fragment --><p><b>Arguments:</b></p><ul>
+<li><code>PUBLIC_KEY_FILE</code> - Path to the public key file (.pem)</li>
+</ul>
+<p><b>Example:</b> </p><div class="fragment"><div class="line">fourdst-cli keys add example.pub.pem</div>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md53"></a>
 Integration with Examples</h1>
 <p>The CLI should work well with the provided examples:</p>
 <div class="fragment"><div class="line"># Generate a plugin for the greeter interface</div>
@@ -261,7 +347,7 @@ Integration with Examples</h1>
 <div class="line"> </div>
 <div class="line"># Generate a math operation plugin</div>
 <div class="line">fourdst-cli plugin init my_math --header examples/03-math-plugins/include/math_interfaces.h</div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md39"></a>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md54"></a>
 Development Workflow</h1>
 <ol type="1">
 <li><b>Define your interface</b> in a header file</li>
