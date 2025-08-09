@@ -367,7 +367,7 @@ namespace fourdst::plugin::bundle {
         m_triplet = m_hostArchitecture + "-" + m_hostOperatingSystem;
     }
 
-    std::vector<PluginPlatforms> PluginBundle::parse_manifest(std::filesystem::path manifestPath) {
+    std::vector<PluginPlatforms> PluginBundle::parse_manifest(const std::filesystem::path& manifestPath) {
         m_bundleManifest = YAML::LoadFile(manifestPath.string());
 
         m_bundleName = m_bundleManifest["bundleName"].as<std::string>();
@@ -486,7 +486,9 @@ namespace fourdst::plugin::bundle {
             throw std::runtime_error("Manifest file does not exist in the unpacked bundle: " + manifestPath.string());
         }
 
-        std::vector<PluginPlatforms> good_plugins = parse_manifest(manifestPath);
+        m_trusted = false;
+        m_signed = false;
+        const std::vector<PluginPlatforms> good_plugins = parse_manifest(manifestPath);
         load(good_plugins);
 
     }

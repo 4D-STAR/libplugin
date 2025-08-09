@@ -278,7 +278,7 @@ namespace fourdst::plugin::bundle {
          * 
          * @throws std::runtime_error If the manifest is invalid or missing required fields.
          */
-        std::vector<PluginPlatforms> parse_manifest(std::filesystem::path manifestPath);
+        std::vector<PluginPlatforms> parse_manifest(const std::filesystem::path& manifestPath);
 
         /**
          * @brief Get the ABI signature of the host system.
