@@ -12,6 +12,7 @@
 #include <iostream>
 #include <stdexcept>
 #include <memory>
+#include <cstring>
 
 namespace {
     enum class KeyFormat {
