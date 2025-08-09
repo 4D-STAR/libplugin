@@ -1,0 +1,6 @@
+[wrap-git]
+url = https://github.com/jbeder/yaml-cpp.git
+revision = yaml-cpp-0.7.0
+diff_files = yaml-cpp/disableShadowWarnings.patch, yaml-cpp/addCSTDINTToEmitterUtils.patch
+
+[cmake]
