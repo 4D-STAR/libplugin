@@ -495,10 +495,6 @@ namespace fourdst::plugin::bundle {
         return std::ranges::contains(m_pluginNames, pluginName);
     }
 
-    void PluginBundle::load(const std::string &pluginName) const {
-
-    }
-
     std::vector<std::string> PluginBundle::getPluginNames() const {
         return m_pluginNames;
     }
