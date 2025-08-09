@@ -212,8 +212,8 @@ namespace fourdst::plugin::bundle {
 
     private:
         std::filesystem::path m_filepath;                   ///< Path to the bundle file
+        PluginLoadPolicy m_loadPolicy;  ///< Current load policy
         manager::PluginManager& m_pluginManager;            ///< Reference to the plugin manager
-        std::unordered_map<std::string, bool> m_loadedMap;  ///< Map of loaded plugins
 
         std::string m_hostABISignature;     ///< ABI signature of the host system
         std::string m_hostArchitecture;     ///< Architecture of the host system
@@ -232,12 +232,9 @@ namespace fourdst::plugin::bundle {
         std::optional<std::vector<unsigned char>> m_bundleSignature;  ///< Bundle signature
 
         std::vector<std::string> m_pluginNames;  ///< List of plugin names in the bundle
-        std::unordered_map<std::string, std::string> m_pluginAuthors;  ///< Map of plugin names to authors
-        std::unordered_map<std::string, std::string> m_pluginVersions; ///< Map of plugin names to versions
 
         bool m_signed;              ///< Whether the bundle is signed
         bool m_trusted;             ///< Whether the bundle is trusted
-        PluginLoadPolicy m_loadPolicy;  ///< Current load policy
 
         utils::TemporaryDirectory m_temporaryDirectory;  ///< Temporary directory for bundle extraction
 
