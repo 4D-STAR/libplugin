@@ -1,17 +1,35 @@
-project('libplugin', 'cpp', meson_version : '>= 1.3.0', version : 'v0.3.1', default_options : ['cpp_std=c++23'])
+project('libplugin', 'cpp', meson_version : '>= 1.3.0', version : 'v0.3.2', default_options : ['cpp_std=c++23'])
+
+py = import('python').find_installation(pure: false)
+
+if get_option('python-wheel')
+    py_installation = true
+    lib_install_dir = py.get_install_dir(pure: false)
+    header_install_dir = py.get_install_dir(subdir: 'fourdst/include')
+else
+    py_installation = false
+    lib_install_dir = get_option('libdir')
+    header_install_dir = get_option('includedir')
+endif
+
 
 subdir('build-config')
 
 subdir('src')
 
 if get_option('tests')
-    message('Setting up tests for libplugin...')
-    subdir('tests')
+    build_tests = true
 else
-    message('Skipping tests for libplugin...')
+    build_tests = false
 endif
 
-if get_option('pkg-config')
+if build_tests and not py_installation
+    subdir('tests')
+endif
+
+pkg_config = get_option('pkg-config')
+
+if pkg_config and py_installation
     pkg_libs = [libplugin, yaml_cpp_dep, openssl_dep, minizip_dep]
 
 
