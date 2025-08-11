@@ -1,4 +1,4 @@
-project('libplugin', 'cpp', meson_version : '>= 1.3.0', version : 'v0.3.3', default_options : ['cpp_std=c++23'])
+project('libplugin', 'cpp', meson_version : '>= 1.3.0', version : 'v0.3.4', default_options : ['cpp_std=c++23'])
 
 py = import('python').find_installation(pure: false)
 

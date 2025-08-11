@@ -125,6 +125,29 @@ namespace {
         return data;
     }
 
+    std::vector<unsigned char> hex_string_to_bytes(const std::string &hex) {
+        if (hex.size() % 2 != 0) {
+            throw std::runtime_error("Hex string length must be even");
+        }
+
+        std::vector<unsigned char> bytes;
+        bytes.reserve(hex.size() / 2);
+
+        auto hex_char_to_val = [](char c) -> unsigned char {
+            if (std::isdigit(static_cast<unsigned char>(c))) return c - '0';
+            if (std::isxdigit(static_cast<unsigned char>(c))) return std::tolower(c) - 'a' + 10;
+            throw std::runtime_error("Invalid hex character");
+        };
+
+        for (std::size_t i = 0; i < hex.size(); i += 2) {
+            unsigned char high = hex_char_to_val(hex[i]);
+            unsigned char low  = hex_char_to_val(hex[i + 1]);
+            bytes.push_back((high << 4) | low);
+        }
+
+        return bytes;
+    }
+
     std::string reconstruct_and_verify(
     const std::filesystem::path& temp_dir,
     const YAML::Node& manifest
@@ -300,14 +323,21 @@ namespace {
 
 namespace fourdst::plugin::bundle {
     bool PluginBundle::verify_bundle() {
-        const std::filesystem::path signaturePath = m_temporaryDirectory.get_path() / "manifest.sig";
         m_trusted = false;
         m_signed = false;
-        if (std::filesystem::exists(signaturePath)) {
+        auto signatureSection = m_bundleManifest["bundleSignature"];
+        if (!signatureSection) {
+            return false; // No signature section found
+        }
+        else {
+            auto signatureHexString = signatureSection["signature"].as<std::string>("");
+            if (signatureHexString.empty()) {
+                throw std::runtime_error("Bundle signature is empty in the manifest even though there is a signature section. This is likely a malformed bundle manifest.");
+            }
             m_signed = true;
-            m_bundleSignature = file_to_vector(signaturePath);
-            if (m_bundleManifest["bundleAuthorKeyFingerprint"]) {
-                m_bundleAuthorKeyFingerprint = m_bundleManifest["bundleAuthorKeyFingerprint"].as<std::string>();
+            m_bundleSignature = hex_string_to_bytes(signatureHexString);
+            if (signatureSection["keyFingerprint"]) {
+                m_bundleAuthorKeyFingerprint = signatureSection["keyFingerprint"].as<std::string>();
             } else {
                 m_signed = false;
                 throw std::runtime_error("Bundle author key fingerprint is missing in the manifest with signature!");
