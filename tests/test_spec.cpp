@@ -67,7 +67,6 @@ TEST_F(PluginManagerTest, R1_4_ThrowsWhenFactoryFunctionIsMissing) {
 // --- R2: Plugin Instantiation and Management ---
 
 TEST_F(PluginManagerTest, R2_1_R2_2_InstantiatesAndStoresPluginByName) {
-    manager.load(valid_plugin_path);
     auto* plugin = manager.get<fourdst::plugin::IPlugin>("ValidPlugin");
     ASSERT_NE(plugin, nullptr);
     EXPECT_STREQ(plugin->get_name(), "ValidPlugin");
@@ -75,7 +74,6 @@ TEST_F(PluginManagerTest, R2_1_R2_2_InstantiatesAndStoresPluginByName) {
 }
 
 TEST_F(PluginManagerTest, R2_3_ThrowsOnDuplicatePluginName) {
-    manager.load(valid_plugin_path);
     EXPECT_THROW(manager.load(valid_plugin_path), fourdst::plugin::exception::PluginNameCollisionError);
 }
 
@@ -83,9 +81,13 @@ TEST_F(PluginManagerTest, R2_5_ReturnsNullptrForNonExistentPlugin) {
     EXPECT_THROW(manager.get<fourdst::plugin::IPlugin>("NonExistentPlugin"), fourdst::plugin::exception::PluginNotLoadedError);
 }
 
+TEST_F(PluginManagerTest, R2_6_7_BooleanCheckForPluginExistence) {
+    EXPECT_FALSE(manager.has("NonExistentPlugin"));
+    EXPECT_TRUE(manager.has("ValidPlugin"));
+}
+
 // --- R3: Type-Safe Access ---
 TEST_F(PluginManagerTest, R3_1_R3_2_TypeSafeGetSucceedsForCorrectType) {
-    manager.load(valid_plugin_path);
     auto* plugin = manager.get<IValidPlugin>("ValidPlugin");
     ASSERT_NE(plugin, nullptr);
     EXPECT_EQ(plugin->get_magic_number(), 42);
@@ -99,7 +101,6 @@ TEST_F(PluginManagerTest, R3_3_TypeSafeGetThrowsForIncorrectType) {
 // --- R4: Plugin Lifecycle and Unloading ---
 
 TEST_F(PluginManagerTest, R4_1_R4_2_UnloadCallsDestructorAndReleasesLibrary) {
-    manager.load(valid_plugin_path);
     g_destructor_called = false;
 
     EXPECT_NO_THROW(manager.unload("ValidPlugin"));

@@ -26,6 +26,13 @@ namespace fourdst::plugin {
         std::map<std::string, PluginHandle> plugins;
     };
 
+    bool manager::PluginManager::has(const std::string &plugin_name) const {
+        if (const auto it = pimpl->plugins.find(plugin_name); it != pimpl->plugins.end()) {
+            return it->second.instance != nullptr;
+        }
+        return false;
+    }
+
     manager::PluginManager::PluginManager() : pimpl(std::make_unique<Impl>()) {}
     manager::PluginManager::~PluginManager() {
         std::vector<std::string> names_to_unload;

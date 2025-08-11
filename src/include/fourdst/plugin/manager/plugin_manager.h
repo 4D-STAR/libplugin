@@ -155,6 +155,8 @@ namespace fourdst::plugin::manager {
             return casted_plugin;
         }
 
+        bool has(const std::string& plugin_name) const;
+
     private:
         PluginManager();
 
