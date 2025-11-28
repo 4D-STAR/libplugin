@@ -1,4 +1,4 @@
-project('libplugin', 'cpp', meson_version : '>= 1.6.0', version : 'v0.3.6', default_options : ['cpp_std=c++23'])
+project('libplugin', 'cpp', meson_version : '>= 1.6.0', version : 'v0.3.7', default_options : ['cpp_std=c++23'])
 
 py = import('python').find_installation(pure: false)
 
@@ -17,7 +17,7 @@ subdir('build-config')
 
 subdir('src')
 
-if get_option('tests')
+if get_option('build-tests')
     build_tests = true
 else
     build_tests = false
