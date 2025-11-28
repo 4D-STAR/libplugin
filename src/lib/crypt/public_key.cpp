@@ -92,8 +92,14 @@ namespace {
 
 
 namespace fourdst::crypt {
+    struct FileCloser {
+        void operator()(FILE* fp) const {
+    	if (fp) std::fclose(fp);
+        }
+    };
+
     PublicKey::PublicKey(const char* filepath) {
-        const std::unique_ptr<FILE, decltype(&fclose)> pubkey_file(fopen(filepath, "r"), &fclose);
+        const std::unique_ptr<FILE, FileCloser> pubkey_file(fopen(filepath, "r"));
         if (!pubkey_file) {
             throw std::runtime_error("Failed to open public key file: " + std::string(filepath));
         }

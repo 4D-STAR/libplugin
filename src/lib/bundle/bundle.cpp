@@ -115,16 +115,6 @@ namespace {
         mz_zip_reader_delete(&reader_handle);
     }
 
-    std::vector<unsigned char> file_to_vector(const std::filesystem::path& filepath) {
-        std::ifstream ifs(filepath, std::ios::binary);
-        if (!ifs) {
-            throw std::runtime_error("Failed to open file: " + filepath.string());
-        }
-        std::vector<unsigned char> data((std::istreambuf_iterator<char>(ifs)), std::istreambuf_iterator<char>());
-        ifs.close();
-        return data;
-    }
-
     std::vector<unsigned char> hex_string_to_bytes(const std::string &hex) {
         if (hex.size() % 2 != 0) {
             throw std::runtime_error("Hex string length must be even");
