@@ -12,14 +12,25 @@ lib_src = files(
 
 dl_dep = dependency('dl', required: true)
 
-libplugin = shared_library(
-    'plugin',
-    lib_src,
-    install : true,
-    include_directories : include,
-    dependencies : [dl_dep, openssl_dep, yaml_cpp_dep, minizip_dep],
-    cpp_args : ['-fPIC']
-)
+if py_installation
+    libplugin = static_library(
+        'plugin',
+        lib_src,
+        install : true,
+        include_directories : include,
+        dependencies : [dl_dep, openssl_dep, yaml_cpp_dep, minizip_dep],
+        cpp_args : ['-fPIC']
+    )
+else
+    libplugin = shared_library(
+        'plugin',
+        lib_src,
+        install : true,
+        include_directories : include,
+        dependencies : [dl_dep, openssl_dep, yaml_cpp_dep, minizip_dep],
+        cpp_args : ['-fPIC']
+    )
+endif
 
 plugin_dep = declare_dependency(
     link_with : libplugin,
